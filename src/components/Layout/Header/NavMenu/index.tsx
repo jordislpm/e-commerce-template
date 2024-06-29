@@ -1,26 +1,35 @@
-import React from 'react'
-import styles from "./NavMenu.module.css"
-import Link from 'next/link'
-import { RoutesNav } from '@/contast'
+import React from 'react';
+import { IoIosArrowForward } from "react-icons/io";
+import styles from "./NavMenu.module.css";
+import Link from 'next/link';
+import { RoutesNav } from '@/contast';
 
 function NavMenu() {
   return (
     <div className={styles.navMenu}>
-      <ul>
+      <div className={styles.list}>
         {RoutesNav.map((route) => (
+          
           <Link
             key={route.name}
+            href={`${route.subroutes ? "": route.route}`}
             className={styles.link}
-            href={route.route}
           >
             {route.name}
+            {route.subroutes &&
+            <IoIosArrowForward />}
           </Link>
         ))}
+      </div>
+      <Link
+        href="/login"
+        className={styles.link}
+      >
+        INICIAR SESION
 
-      </ul>
-      <Link href="">INICIAR SESION</Link>
+      </Link>
     </div>
-  )
+  );
 }
 
-export default NavMenu
+export default NavMenu;

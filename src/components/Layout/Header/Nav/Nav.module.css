@@ -11,7 +11,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
+    z-index: 125;
     display: block;
     opacity: 1;
   }
@@ -22,6 +22,8 @@
   }
 
   .menu{
+    display: flex;
+    flex-direction:column;
     background: var(--color-main);
     width: 90%;
     height: 100%;
@@ -30,9 +32,7 @@
     top: 0;
     left: -100vw;
     z-index: 150;
-    display: block;
     transition: left 0.5s ease;
-    border-botton: red 5px solid;
   }
 
   .menuActive {
