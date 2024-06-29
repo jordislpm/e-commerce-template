@@ -1,0 +1,44 @@
+.nav{
+   display: flex;
+   width: 4rem;
+   max-height:100vh;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: block;
+    opacity: 1;
+  }
+  
+  .overlayActive {
+    left:0;
+  
+  }
+
+  .menu{
+    background: var(--color-main);
+    width: 90%;
+    height: 100%;
+    padding:1rem;
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    z-index: 150;
+    display: block;
+    transition: left 0.5s ease;
+    border-botton: red 5px solid;
+  }
+
+  .menuActive {
+   left:0;
+  }
+
+  .menuDesactive{
+    left: -100vw;
+  }
