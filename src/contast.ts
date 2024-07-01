@@ -1,29 +1,141 @@
 export const PROJECT_NAME = "algodonia"
 
-export const RoutesNav =  [
+export const RoutesNav = [
     {
         name: "STARTER PACK [PLUMÓN + FUNDA]",
-        route: "/collections/starter-pack-plumon-funda"
+        route: "/starter-pack-plumon-funda"
     },
     {
         name: "CAMA",
-        route: "/about",
-        subroutes: []
+        route: "/bed",
+        subRoutes: [
+            {
+                name: "VER TODO",
+                route: "/about",
+            },
+            {
+                name: "ALMOHADAS HIPOALERGÉNICAS",
+                route: "/about",
+            },
+            {
+                name: "BED TOPPER",
+                route: "/about",
+            },
+            {
+                name: "FUNDAS DE PLUMÓN/CUBRECAMAS",
+                route: "/about",
+            },
+            {
+                name: "SÁBANAS",
+                route: "/about",
+            },
+            {
+                name: "PLUMÓN HIPOALERGÉNICO",
+                route: "/about",
+            },
+            {
+                name: "PROTECTOR DE COLCHÓN",
+                route: "/about",
+            },
+            {
+                name: "FUNDAS DE ALMOHADA",
+                route: "/about",
+            },
+            {
+                name: "PROTECTORES DE ALMOHADA",
+                route: "/about",
+            },
+        ]
     },
     {
         name: "BAÑO Y SPA",
-        route: "/services",
-        subroutes: []
+        route: "/bath",
+        subRoutes: [
+            {
+                name: "VER TODO",
+                route: "/about",
+            },
+            {
+                name: "TOALLAS",
+                route: "/about",
+            },
+            {
+                name: "PISOS DE BAÑO",
+                route: "/about",
+            },
+            {
+                name: "PORTACEPILLOS",
+                route: "/about",
+            },
+            {
+                name: "DISPENSADORES",
+                route: "/about",
+            },
+            {
+                name: "ANTIFACES",
+                route: "/about",
+            },
+            {
+                name: "BATAS",
+                route: "/about",
+            },
+            {
+                name: "TURBANTES",
+                route: "/about",
+            },
+            {
+                name: "PANTUFLAS",
+                route: "/about",
+            },
+        ]
     },
     {
         name: "DECORACIÓN",
-        route: "/contact",
-        subroutes: []
+        route: "/decor",
+        subRoutes: [
+            {
+                name: "VER TODO",
+                route: "/about",
+            },
+            {
+                name: "COJINES",
+                route: "/about",
+            },
+            {
+                name: "JARRONES",
+                route: "/about",
+            },
+            {
+                name: "SERVILLETAS",
+                route: "/about",
+            },
+            {
+                name: "RELOJ DE ARENA",
+                route: "/about",
+            },
+        ]
     },
     {
         name: "ORGANIZACIÓN",
-        route: "/contact",
-        subroutes: []
+        route: "/setup",
+        subRoutes: [
+            {
+                name: "VER TODO",
+                route: "/about",
+            },
+            {
+                name: "CESTAS",
+                route: "/about",
+            },
+            {
+                name: "BOLSAS AL VACIO",
+                route: "/about",
+            },
+            {
+                name: "PORTA SABANAS",
+                route: "/about",
+            },
+        ]
     },
     {
         name: "📍NUESTRAS TIENDAS📍",

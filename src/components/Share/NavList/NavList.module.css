@@ -1,16 +1,4 @@
-.navMenu {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    justify-content: space-between;
-    margin-top:1rem;
-    animation: slideUp 1s ease-out;
-    position: relative;
-    background: var(--color-main);
-  }
-  
-  .list {
+.list {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -59,4 +47,13 @@
       transform: translateY(0);
       opacity: 1;
     }
+  }
+
+  .close_submenu{
+    display: flex;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    opacity:0.8;
+    aling-items:center;
+    gap:0.5rem;
   }

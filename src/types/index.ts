@@ -8,9 +8,9 @@ export interface SubRoutesType{
     route: string; 
 }
 
-export interface RoutesDataType{
+export interface RoutesListType{
     name: string;
     route: string;
-    subroutes?: SubRoutesType[];
+    subRoutes?: SubRoutesType[];
 }
 

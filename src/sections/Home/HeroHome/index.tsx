@@ -1,9 +1,8 @@
 import React from 'react'
 import styles from "./Hero.module.css"
-import Image from 'next/image'
-import ButtonPrimary from '../Share/ButtonPrimary'
+import ButtonPrimary from '../../../components/Share/ButtonPrimary'
 
-function Hero() {
+function HeroHome() {
     return (
         <div className={styles.hero}>
             <div className={styles.button}>
@@ -13,4 +12,4 @@ function Hero() {
     )
 }
 
-export default Hero
+export default HeroHome

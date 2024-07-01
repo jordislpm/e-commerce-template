@@ -1,11 +1,13 @@
-import Image from "next/image";
+
+import HomeSection from "@/sections/Home";
 import styles from "./page.module.css";
-import Hero from "@/components/Hero";
+import HeroHome from "@/sections/Home/HeroHome";
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Hero/>
+      <HeroHome/>
+      <HomeSection/>
     </main>
   );
 }
