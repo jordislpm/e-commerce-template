@@ -1,8 +1,4 @@
-.nav{
-    display: flex;
-    width: 4rem;
-    max-height:100vh;
- }
+
  
  .overlay {
      position: fixed;
