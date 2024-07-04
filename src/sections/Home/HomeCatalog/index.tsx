@@ -1,8 +1,12 @@
+"use client"
 import React from 'react'
 import Catalog from '@/components/Share/Catalog'
 import { MdOutlineCloud } from "react-icons/md";
+import { useProducts } from '@/hooks/useProducts';
 
 function HomeCatalog() {
+
+    const { products } = useProducts();
   return (
     <div>
         <h2>

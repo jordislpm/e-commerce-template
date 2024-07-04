@@ -3,13 +3,19 @@ import React, { useState } from 'react'
 import { RiShoppingCartLine } from "react-icons/ri";
 import { IoCloseSharp } from "react-icons/io5";
 import styles from "./ShoppingCart.module.css"
+import { useShoppingCart } from '@/hooks/useShoppingCart';
 
 function ShoppingCart() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const shoppingCart = useShoppingCart();
+
+
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
+
+  console.log("my shopping cart" , shoppingCart.cart)
 
   return (
     <div>
@@ -23,9 +29,16 @@ function ShoppingCart() {
           <IoCloseSharp onClick={toggleModal} size={25}  />
         </div>
         <div className={styles.body}> 
-            <div className={styles.vacio}>
-              EL CARRITO ESTA VACIO
-            </div>
+          {shoppingCart.cart.length === 0 ?
+          <div className={styles.vacio}>
+          EL CARRITO ESTA VACIO
+        </div>
+         :
+         <div className={styles.vacio}>
+         EL CARRITO no esta VACIO
+       </div>
+        }
+           
         </div>
       </div>
 

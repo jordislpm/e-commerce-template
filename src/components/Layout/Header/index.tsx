@@ -2,7 +2,7 @@ import styles from "./Header.module.css"
 import Nav from './Nav'
 import { PROJECT_NAME } from '@/contast'
 import Search from './Search'
-import ShoppingCart from './ShoppingCart'
+import ShoppingCart from '../../Share/ShoppingCart'
 import Link from "next/link"
 
 function Header() { 

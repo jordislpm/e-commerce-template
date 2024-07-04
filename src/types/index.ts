@@ -20,3 +20,17 @@ export interface ChildrenProps {
     children?: ReactNode;
   }
 
+  export   interface ProductProps {
+    id: string;
+    slug: string;
+    name: string;
+    price: number;
+    quantity: number;
+    image: string;
+  }
+
+  export interface CouponProps {
+    name: string;
+    value: number;
+  }
+
