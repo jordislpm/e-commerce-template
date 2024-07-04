@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface ButtonPrimaryType{
     title?: string;
     buttonClick?: ()=> void;
@@ -13,4 +15,8 @@ export interface RoutesListType{
     route: string;
     subRoutes?: SubRoutesType[];
 }
+
+export interface ChildrenProps {
+    children?: ReactNode;
+  }
 

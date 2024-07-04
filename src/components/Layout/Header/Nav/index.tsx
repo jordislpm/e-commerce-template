@@ -5,7 +5,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import styles from "./Nav.module.css"
 import Link from 'next/link';
 import { RoutesListType } from '@/types';
-import { RoutesNav } from '@/contast';
+import { useProjectRoutes } from '@/hooks/useProjectRoutes';
 
 function Nav() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -16,13 +16,15 @@ function Nav() {
             route: ""
         }
     );
-    
+    const {projectRoutes}=useProjectRoutes();
+        
     const toggleSubMenuState = () => {
         setSubMenu(prevState => ({
             ...prevState,
             state: !prevState.state
         }));
     };
+
     
     const navListClick = (actualRoute: RoutesListType) => {
     
@@ -59,7 +61,7 @@ function Nav() {
                 <IoCloseSharp onClick={closeModal} size={30} />
                 <div className={styles.navMenu}>
      {!subMenu.state && <div className={styles.list}>
-                {RoutesNav.map((route, index) => (
+                {projectRoutes.map((route, index) => (
                     !route.subRoutes ? (
                         <Link
                         onClick={toggleModal}

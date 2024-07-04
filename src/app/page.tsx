@@ -1,5 +1,5 @@
 
-import HomeSection from "@/sections/Home";
+import HomeCatalog from "@/sections/Home/HomeCatalog";
 import styles from "./page.module.css";
 import HeroHome from "@/sections/Home/HeroHome";
 
@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <HeroHome/>
-      <HomeSection/>
+      <HomeCatalog/>
     </main>
   );
 }
