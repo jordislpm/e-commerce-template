@@ -15,7 +15,6 @@ function ShoppingCart() {
     setIsOpen(!isOpen);
   };
 
-  console.log("my shopping cart" , shoppingCart.cart)
 
   return (
     <div>

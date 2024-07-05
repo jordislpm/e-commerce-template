@@ -15,7 +15,9 @@ function Header() {
       <div className={styles.principal}>
       <Nav/>
         <Link className={styles.link}  href="/">
+        <h1 className={styles.title}>
         {PROJECT_NAME.toLocaleUpperCase()}
+        </h1>
         </Link>
         <div className={styles.right}>
            <Search/>
