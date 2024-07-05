@@ -4,12 +4,12 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import { IoCloseSharp } from "react-icons/io5";
 import styles from "./ShoppingCart.module.css"
 import { useShoppingCart } from '@/hooks/useShoppingCart';
+import { useProducts } from '@/hooks/useProducts';
 
 function ShoppingCart() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const shoppingCart = useShoppingCart();
-
 
   const toggleModal = () => {
     setIsOpen(!isOpen);

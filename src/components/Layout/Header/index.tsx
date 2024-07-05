@@ -4,11 +4,16 @@ import { PROJECT_NAME } from '@/contast'
 import Search from './Search'
 import ShoppingCart from './ShoppingCart'
 import Link from "next/link"
+import BannerCarousel from "./BannerCarousel"
 
-function Header() { 
+function Header() {
+
+
   return (
     <header className={styles.header}>
-        <Nav/>
+    <BannerCarousel/>
+      <div className={styles.principal}>
+      <Nav/>
         <Link className={styles.link}  href="/">
         {PROJECT_NAME.toLocaleUpperCase()}
         </Link>
@@ -16,6 +21,7 @@ function Header() {
            <Search/>
            <ShoppingCart/> 
         </div>
+      </div>
     </header>
   )
 }

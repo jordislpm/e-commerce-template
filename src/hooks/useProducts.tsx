@@ -9,7 +9,6 @@ export const useProducts = () => {
     const fetch = async () => {
         const allProducts = await productsApi();
         console.log(allProducts)
-        // setProducts(allProducts);
     }
 
     useEffect(() => {
