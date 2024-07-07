@@ -139,6 +139,6 @@ export const RoutesNav = [
     },
     {
         name: "📍NUESTRAS TIENDAS📍",
-        route: "/contact"
+        route: "/stores"
     },
 ]

@@ -71,7 +71,7 @@
     position: fixed;
     top: 0;
     left: -100vw;
-    z-index: 160;
+    z-index: 200;
     position: absolute;
     background: var(--color-main);
   }
