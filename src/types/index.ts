@@ -1,8 +1,13 @@
+
 import { ReactNode } from "react";
 
+
 export interface ButtonPrimaryType{
-    title?: string;
-    buttonClick?: ()=> void;
+  title?: string;
+    buttonClick?: () => void;
+    type?: 'button' | 'link';
+    styleType?: 'primary' | 'secondary';
+    href?: string;
 }
 
 export interface SubRoutesType{
@@ -16,20 +21,13 @@ export interface RoutesListType{
     subRoutes?: SubRoutesType[];
 }
 
-export interface ChildrenProps {
+export interface ChildrenType {
     children?: ReactNode;
   }
 
-  export   interface ProductProps {
-    id: string;
-    slug: string;
-    name: string;
-    price: number;
-    quantity: number;
-    image: string;
-  }
 
-  export interface CouponProps {
+
+  export interface CouponType {
     name: string;
     value: number;
   }
@@ -41,7 +39,7 @@ export interface ChildrenProps {
     DELETED = 'deleted',
 }
 
-  export interface Base {
+  export interface BaseType {
     _id?: string;
     uuid: string;
     status: StatusType;
@@ -49,40 +47,48 @@ export interface ChildrenProps {
     updatedAt: Date;
   }
 
-  export interface ProductCategory extends Base{
-    name: string;
-    image: string;
-}
-  export interface Product extends Base {
-    name: string;
-    brand: string;
-    category: string | ProductCategory;
+  export interface VariantType {
+    variantId: string;
+    barcode: string;
+    sku: string;
     price: number;
-    wattage: number;
-    description: string;
-    images: string[];
-    slug: string;
-    color: string;
-    sold: number;
-    ratings: number;
-    model: string;
-    ranking: number;
-    screen: Screen;
-    benchmark: number;
-    speed: string;
-    cores: number;
-    thread: number;
-    cache: number;
-    memory: string;
-    type: string;
-    form_factor: string;
-    socket: string;
-    max_memory: string;
-    chipset: string;
-    weight: number;
-    track_stock: boolean;
+    cost: number;
+    purchasePrice: number;
     stock: number;
-   }
+  }
+  
+  export interface ProductType {
+    kind: string;
+    name: string;
+    desc: string;
+    contactName: string;
+    price: number;
+    inCatalog: boolean;
+    tags: string[];
+    images: string[];
+    status: 'active' | 'inactive';
+    account: string;
+    variants: VariantType[];
+    notes: string[];
+    slug: string;
+    createdAt: string;
+    updatedAt: string;
+    id: string;
+  }
+  
+  export interface PageInfoType {
+    page: number | null;
+    pages: number | null;
+    hasPreviousPage: boolean;
+    hasNextPage: boolean;
+    nextPage: number | null;
+    previousPage: number | null;
+  }
+  
+  export interface ItemListType {
+    items: ProductType[];
+    pageInfo: PageInfoType;
+  }
 
 
 

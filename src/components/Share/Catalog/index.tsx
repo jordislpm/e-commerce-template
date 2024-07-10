@@ -1,10 +1,10 @@
 import React from 'react'
-import { ChildrenProps } from '@/types'
+import { ChildrenType} from '@/types'
 import styles from "./Catalog.module.css"
 
-function Catalog({children}:ChildrenProps) {
+function Catalog({children}:ChildrenType) {
   return (
-    <div className={styles.section}>
+    <div className={styles.catalog}>
       {children}
     </div>
   )

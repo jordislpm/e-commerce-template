@@ -38,7 +38,7 @@ function BannerCarousel () {
     }, 6000);
 
     return () => clearInterval(interval); 
-  }, []);
+  }, [currentIndex]);
 
 
   return (

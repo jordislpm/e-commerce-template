@@ -1,17 +1,19 @@
 import { helebbaClient } from 'helebba-sdk';
 
 const { NEXT_PUBLIC_API_KEY } = process.env;
+const apiKey = process.env.NEXT_PUBLIC_API_KEY || "";
 
+const helebba = helebbaClient(apiKey);
 
 
 export const products = async () => {
    
     try {
-        const apiKey = process.env.NEXT_PUBLIC_API_KEY || "";
+       
         if (!apiKey) {
             throw new Error("API key is missing");
         }
-        const helebba = helebbaClient(apiKey);
+  
         const products = await helebba.listProducts();
         console.log(products);
         return products;

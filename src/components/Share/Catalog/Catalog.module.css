@@ -1,0 +1,7 @@
+.catalog{
+display:grid;
+grid-template-columns: auto auto;
+padding:0.5rem;
+gap:0.5rem;
+margin: 0.5rem 0rem;
+}
