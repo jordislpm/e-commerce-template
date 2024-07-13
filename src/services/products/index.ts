@@ -1,31 +1,25 @@
-import { helebbaClient } from 'helebba-sdk';
 
-const { NEXT_PUBLIC_API_KEY } = process.env;
-const apiKey = process.env.NEXT_PUBLIC_API_KEY || "";
-
-const helebba = helebbaClient(apiKey);
+import { helebba } from '@/apiContast';
+import { Product } from "helebba-sdk"
 
 
-export const products = async () => {
-   
+
+
+interface ProductsResponse {
+    items: Product[];
+    count: number;
+    pageInfo: {
+        // Define aquí las propiedades de pageInfo según lo que retorne tu API
+    };
+}
+
+export async function GetProductsServer(): Promise<ProductsResponse> {
     try {
-       
-        if (!apiKey) {
-            throw new Error("API key is missing");
-        }
-  
         const products = await helebba.listProducts();
-        console.log(products);
-        return products;
+        const { items, count, pageInfo } = products;
+        return { items, count, pageInfo };
     } catch (error) {
-        if (error instanceof Error) {
-            console.error("Error fetching products:", error.message);
-        } else {
-            console.error("Unknown error fetching products");
-        }
-        return null;
+        console.error('Error fetching products:', error);
+        return { items: [], count: 0, pageInfo: {} as any };
     }
-};
-
-
-
+}

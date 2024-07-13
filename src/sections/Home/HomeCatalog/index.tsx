@@ -7,17 +7,21 @@ import { helebba } from '@/apiContast';
 import ProductCard from '@/components/Share/ProductCard';
 import ButtonPrimary from '@/components/Share/ButtonPrimary';
 
+
+
+
+
 async function HomeCatalog() {
-
-
 
   const products = await helebba.listProducts();
   const { items, count, pageInfo } = products;
   console.log(products);
   console.log(typeof products.items);
+ 
+
   return (
     <section className={styles.section}>
-      <h2 className={styles.title}>
+      <h2 className={`title_section`}>
         <MdOutlineCloud /> DESCUBRE EL DESCANSO PERFECTO <MdOutlineCloud />
       </h2>
       <Catalog>
