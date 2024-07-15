@@ -76,7 +76,7 @@ export interface ChildrenType {
     id: string;
   }
   
-  export interface PageInfoType {
+  export interface pageInfoType {
     page: number | null;
     pages: number | null;
     hasPreviousPage: boolean;
@@ -87,8 +87,12 @@ export interface ChildrenType {
   
   export interface ItemListType {
     items: ProductType[];
-    pageInfo: PageInfoType;
+    pageInfo: pageInfoType;
   }
 
 
-
+export interface categorieType{
+  name: string;
+  image: string,
+  route: string;
+}

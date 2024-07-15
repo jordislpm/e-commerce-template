@@ -1,0 +1,48 @@
+.categorie{
+    display: flex;
+    flex-direction: column;
+    width:13rem;
+    height: auto;
+    text-decoration: none !important;
+    color: var(--white-color); 
+    margin: 0; 
+    padding: 0; 
+  }
+  
+  .image_container {
+    width: 100%;
+    min-height: 10rem;
+    height: auto;
+    padding-top: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+  
+  }
+
+  .content{
+    display: flex;
+    flex-direction:column;
+    padding:2rem;
+    gap:2rem;
+  }
+
+  .content h2{
+    font-size:1.2rem;
+    font-weight:400;
+  }
+
+  .content h3{
+    font-size:0.9rem;
+    font-weight:300;
+    text-decoration: underline;
+  }

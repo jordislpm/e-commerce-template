@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from "./HomeCategories.module.css"
-import SwiperCatalog from '@/components/Share/Swiper'
+import SwiperCatalog from '@/components/Share/SwiperProducts'
 import { helebba } from '@/apiContast';
-import ProductCard from '@/components/Share/ProductCard';
-import { SwiperSlide } from 'swiper/react';
-import { GetProductsServer } from '@/services/products';
+import { categories } from '@/contast';
+import SwiperCategories from '@/components/Share/SwiperCategories';
+
 
 
 
@@ -19,15 +19,7 @@ async function HomeCategories() {
     return (
         <section className={styles.section}>
             <h2 className={`title_section ${styles.title}`}>CATEGORIAS</h2>
-            {/* <SwiperCatalog
-            >
-                {items.map((item, index) => (
-                    <SwiperSlide key={index} >
-                        <ProductCard product={item} />
-                    </SwiperSlide>
-                ))}
-
-            </SwiperCatalog>     */}
+      <SwiperCategories categories={categories} />
         </section>
     )
 }

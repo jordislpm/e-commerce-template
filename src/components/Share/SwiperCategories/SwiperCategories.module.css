@@ -1,0 +1,19 @@
+.swiper {
+    display: flex;
+    min-height: 15rem;
+    height: auto;
+    width: 100%;
+    padding: 0rem 1rem;
+}
+
+.slice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    max-width: 100%; /* Ajusta según sea necesario */
+    box-sizing: border-box;
+}

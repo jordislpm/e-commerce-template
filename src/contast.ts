@@ -142,3 +142,32 @@ export const RoutesNav = [
         route: "/stores"
     },
 ]
+
+
+export const categories = [
+    {
+        name: "CAMA",
+        image: "/categories/bed.png",
+        route: "bed",
+
+    },
+    {
+        name: "BAÑO Y SPA",
+        image: "/categories/bath.png",
+        route: "bath",
+
+    },
+    {
+        name: "DECORACIÓN",
+        image: "/categories/decor.png",
+        route: "decor",
+
+    },
+    {
+        name: "ORGANIZACIÓN",
+        image: "/categories/setup.png",
+        route: "setup",
+
+    }
+
+]

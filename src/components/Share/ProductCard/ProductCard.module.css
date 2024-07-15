@@ -1,9 +1,13 @@
 .card {
   display: flex;
   flex-direction: column;
-  min-width: 100%;
+  width: auto;
+  min-width:10rem;
   max-width:60vw;
   height: auto;
+  min-height: 15rem;
+  margin: 0; 
+  padding: 0; 
 }
 
 .image_container {
@@ -26,14 +30,14 @@
 
 .button_details {
   position: absolute;
-  bottom: 5%;
-  right: 5%;
+  bottom: 0;
+  right: 0;
   background: var(--color-main);
   color: var(--white-principal);
-  margin: 0;
   padding: 0.6rem;
   border: none;
   outline: none;
+  margin: 0.5rem;
 }
 
 .info_container {
@@ -43,10 +47,11 @@
   height: auto;
   padding: 1rem 0.5rem;
   justify-content: center;
-  aling-items: center;
+  align-items: center;
   text-align: center;
   gap: 0.5rem;
 }
+
 .name {
   font-weight: 300;
   font-size: 0.9rem;
@@ -57,40 +62,65 @@
   color: var(--gray-principal);
 }
 
+
+
+
+
+@keyframes slideUp {
+  from {
+    top: 100vh;
+  }
+  to {
+    top: 40%; 
+  }
+}
+
+@keyframes slideDown {
+  from {
+    top: 40%; 
+  }
+  to {
+    top: 100vh;
+  }
+}
+
+
 .overlay {
   position: fixed;
   top: 0;
-  left: +100vw;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 125;
-  display: block;
+  display: none; 
   opacity: 1;
+  transition: opacity 0.2s ease; 
 }
 
 .overlayActive {
-  left:0;
+  display: block; 
 }
 
-.show_details{
+
+.show_details {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   background: var(--white-principal);
   width: 100%;
-  height: 60%;
+  height: 60%; 
   position: fixed;
-  top: +100vh;
+  top: 100vh; 
   right: 0;
   z-index: 150;
-  transition: top 0.2s ease;
+  transition: top 0.1s ease;
 }
 
 .show_details__active {
-  top:40%;
- animation: slideUp 0.1s ease-out forwards;
+  animation: slideUp 0.2s ease-out forwards;
 }
 
-.show_details__desactive{
-  top: +100vh;
+.show_details__desactive {
+  animation: slideDown 0.2s ease-out forwards;
 }
+
