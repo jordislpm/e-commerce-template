@@ -1,4 +1,13 @@
-export const PROJECT_NAME = "algodonia"
+export const PROJECT_NAME = "algodonia";
+
+export const PROJECT_NUMBER = "962 549 990";
+export const PROJECT_EMAIL = "atencionalcliente@algodonia.com";
+export const PROJECT_SOCIAL = {
+    facebook: "https://www.facebook.com/",
+    instagram: "https://www.instagram.com/"
+}
+
+
 
 export const RoutesNav = [
     {
