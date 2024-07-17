@@ -9,6 +9,7 @@ import styles from "./SwiperProducts.module.css";
 import { Product } from "helebba-sdk";
 import ProductCard from '../ProductCard';
 
+
 interface SwiperCatalogProps {
     items: Product[];
 }

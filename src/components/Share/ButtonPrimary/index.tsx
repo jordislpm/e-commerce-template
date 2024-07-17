@@ -16,10 +16,8 @@ function ButtonPrimary({ title, buttonClick, type = 'button', styleType = 'prima
 
     if (type === 'link' && href) {
         return (
-            <Link href={href}>
-                <a className={className}>
+            <Link href={href} className={className}>
                     {title?.toLocaleUpperCase()}
-                </a>
             </Link>
         );
     }

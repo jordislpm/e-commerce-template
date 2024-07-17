@@ -1,11 +1,12 @@
 .button{
-  
+    text-decoration: none !important;
     display: flex;
     justify-content: center;
     aling-items: center;
     padding:1rem;
-    width:10rem;
+    min-width:10rem;
     border: none;
+    width:100%; 
 }
 
 .primary{

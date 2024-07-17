@@ -1,5 +1,6 @@
 
 import { ReactNode } from "react";
+import { Product } from "helebba-sdk";
 
 
 export interface ButtonPrimaryType{
@@ -95,4 +96,23 @@ export interface categorieType{
   name: string;
   image: string,
   route: string;
+}
+
+export interface CartProductType extends Product {
+  quantity: number;
+}
+
+export interface CartStateType {
+  cart: CartProductType[];
+  getTotalItems: () => number;
+  getTotalValueItems: () => number;
+  addProductToCart: (product: CartProductType) => void;
+  removeProduct: (id: string) => void;
+}
+
+export interface GlobalStateType {
+  isMenuOpen: boolean;
+  isCartOpen: boolean;
+  toggleMenu: () => void;
+  toggleCart: () => void;
 }

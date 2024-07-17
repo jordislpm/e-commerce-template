@@ -1,8 +1,13 @@
-import React from 'react'
+import ProductsSection from '@/components/Share/ProductsSection';
+import BedPrincipal from '@/sections/Bed/BedPrincipal';
+import React from 'react';
+
 
 function Bed() {
   return (
-    <div>Bed</div>
+    <>
+    <ProductsSection title="cama" filter='bed' cloud={true}/>
+    </>
   )
 }
 

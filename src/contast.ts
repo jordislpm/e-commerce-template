@@ -20,7 +20,7 @@ export const RoutesNav = [
         subRoutes: [
             {
                 name: "VER TODO",
-                route: "/about",
+                route: "/bed",
             },
             {
                 name: "ALMOHADAS HIPOALERGÉNICAS",
@@ -62,7 +62,7 @@ export const RoutesNav = [
         subRoutes: [
             {
                 name: "VER TODO",
-                route: "/about",
+                route: "/bath",
             },
             {
                 name: "TOALLAS",
@@ -104,7 +104,7 @@ export const RoutesNav = [
         subRoutes: [
             {
                 name: "VER TODO",
-                route: "/about",
+                route: "/decor",
             },
             {
                 name: "COJINES",
@@ -130,7 +130,7 @@ export const RoutesNav = [
         subRoutes: [
             {
                 name: "VER TODO",
-                route: "/about",
+                route: "/setup",
             },
             {
                 name: "CESTAS",

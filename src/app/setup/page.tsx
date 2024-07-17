@@ -1,8 +1,11 @@
+import ProductsSection from '@/components/Share/ProductsSection'
 import React from 'react'
 
 function Setup() {
   return (
-    <div>Setup</div>
+    <> 
+    <ProductsSection title="organizacion" filter='setup'/>
+    </>
   )
 }
 

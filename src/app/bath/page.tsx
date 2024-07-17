@@ -1,8 +1,11 @@
+import ProductsSection from '@/components/Share/ProductsSection'
 import React from 'react'
 
 function Baños() {
   return (
-    <div>Baños y spa</div>
+    <>
+    <ProductsSection title="baño" filter='bath'/>
+    </>
   )
 }
 

@@ -6,20 +6,39 @@ import Image from 'next/image';
 import { Product } from "helebba-sdk";
 import { FaPlus } from "react-icons/fa";
 import { formatPrice } from '@/services/format';
+import { useCartStore } from '@/store/cart';
 
 interface ProductCardProps {
   product: Product;
 }
 
 function ProductCard({ product }: ProductCardProps) {
+
   const [showDetails, setShowDetails] = useState<boolean>(false);
+  const addProductToCart = useCartStore((state) => state.addProductToCart);
+  const cart = useCartStore((state) => state.cart);
+  const [newProduct, setNewProduct] = useState({
+ ...product,
+    quantity: 1,
+  });
 
   const toggleModal = () => {
     console.log("click details");
     setShowDetails(!showDetails);
   };
 
-  const { images, name, price } = product;
+
+  const { images, name, price, variants } = product;
+
+  const addToCart = ()=>{
+    if(variants.length > 0){
+      toggleModal();
+      return ;
+    }
+    addProductToCart(newProduct);
+    console.log(cart);
+
+  }
 
   return (
     <>
@@ -34,7 +53,7 @@ function ProductCard({ product }: ProductCardProps) {
             alt={name} 
           />
           <button
-            onClick={toggleModal}
+            onClick={addToCart}
             className={styles.button_details}>
             <FaPlus />
           </button>
@@ -54,6 +73,11 @@ function ProductCard({ product }: ProductCardProps) {
           <div className={`${styles.show_details} ${showDetails ? styles.show_details__active : styles.show_details__desactive}`}>
             PRODUCT DETAILS
           </div>
+          {variants.map((variant)=>(
+<div>
+  {variant.purchasePrice}
+</div>
+          ))}
         </>,
         document.body
       )}

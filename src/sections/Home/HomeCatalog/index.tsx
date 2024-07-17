@@ -6,7 +6,7 @@ import styles from "./HomeCatalog.module.css"
 import { helebba } from '@/apiContast';
 import ProductCard from '@/components/Share/ProductCard';
 import ButtonPrimary from '@/components/Share/ButtonPrimary';
-import SwiperProducts from '@/components/Share/SwiperProducts';
+
 
 
 
