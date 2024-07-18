@@ -108,6 +108,8 @@ export interface CartStateType {
   getTotalValueItems: () => number;
   addProductToCart: (product: CartProductType) => void;
   removeProduct: (id: string) => void;
+  increaseQuantity: (id: string) => void;
+  decreaseQuantity: (id: string) => void;
 }
 
 export interface GlobalStateType {

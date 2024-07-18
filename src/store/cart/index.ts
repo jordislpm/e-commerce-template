@@ -3,9 +3,7 @@ import { persist } from "zustand/middleware";
 import { Product } from "helebba-sdk";
 import { CartProductType, CartStateType } from "@/types";
 
-
-
-export const useCartStore = create<CartStateType>()(
+export const cartStore = create<CartStateType>()(
   persist(
     (set, get) => ({
       cart: [],
@@ -41,6 +39,31 @@ export const useCartStore = create<CartStateType>()(
       removeProduct: (id: string) => {
         const { cart } = get();
         const updatedCartProducts = cart.filter((item) => item.id !== id);
+        set({ cart: updatedCartProducts });
+      },
+      increaseQuantity: (id: string) => {
+        const { cart } = get();
+        const updatedCartProducts = cart.map((item) => {
+          if (item.id === id) {
+            if(item.quantity < item.stock){
+                return { ...item, quantity: item.quantity + 1 };
+            } else{
+             alert("Haz alcanzado el limite de unidades disponibles en nuestro stock.")
+            }
+           
+          }
+          return item;
+        });
+        set({ cart: updatedCartProducts });
+      },
+      decreaseQuantity: (id: string) => {
+        const { cart } = get();
+        const updatedCartProducts = cart.map((item) => {
+          if (item.id === id && item.quantity > 1) {
+            return { ...item, quantity: item.quantity - 1 };
+          }
+          return item;
+        });
         set({ cart: updatedCartProducts });
       },
     }),

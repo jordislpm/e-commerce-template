@@ -58,7 +58,7 @@
   border-bottom: 1px solid #ccc;
 }
 
-.empty {
+.empty{
   display: flex;
   justify-content: center;
   width: 100%;
@@ -83,7 +83,7 @@
   width:100%;
   height:auto;
   padding:1rem;
-  
+  gap:1rem;
 }
 
 .offer{

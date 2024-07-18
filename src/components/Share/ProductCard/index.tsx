@@ -6,7 +6,9 @@ import Image from 'next/image';
 import { Product } from "helebba-sdk";
 import { FaPlus } from "react-icons/fa";
 import { formatPrice } from '@/services/format';
-import { useCartStore } from '@/store/cart';
+
+import useGlobalStores from '@/hooks/useGlobalStates';
+import useShoppingCart from '@/hooks/useShoppingCart';
 
 interface ProductCardProps {
   product: Product;
@@ -15,8 +17,9 @@ interface ProductCardProps {
 function ProductCard({ product }: ProductCardProps) {
 
   const [showDetails, setShowDetails] = useState<boolean>(false);
-  const addProductToCart = useCartStore((state) => state.addProductToCart);
-  const cart = useCartStore((state) => state.cart);
+  const {addProductToCart, cart} = useShoppingCart();
+  const {isCartOpen, toggleCart}= useGlobalStores();
+ 
   const [newProduct, setNewProduct] = useState({
  ...product,
     quantity: 1,
@@ -36,6 +39,7 @@ function ProductCard({ product }: ProductCardProps) {
       return ;
     }
     addProductToCart(newProduct);
+   toggleCart()
     console.log(cart);
 
   }

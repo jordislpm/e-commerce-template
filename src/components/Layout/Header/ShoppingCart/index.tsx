@@ -3,18 +3,19 @@ import React, { useState } from 'react'
 import { RiShoppingCartLine } from "react-icons/ri";
 import { IoCloseSharp } from "react-icons/io5";
 import styles from "./ShoppingCart.module.css"
-import { useGlobalStore } from '@/store/globalStore';
-import { useCartStore } from '@/store/cart';
 import ProductCardCart from '@/components/Share/ProductCardCart';
 import ButtonPrimary from '@/components/Share/ButtonPrimary';
+import useShoppingCart from '@/hooks/useShoppingCart';
+import useGlobalStores from '@/hooks/useGlobalStates';
 
 
 
 function ShoppingCart() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const isCartOpen = useGlobalStore((state) => state.isCartOpen);
-  const toggleCart = useGlobalStore((state) => state.toggleCart);
-  const cart = useCartStore((state) => state.cart);
+
+  const {isCartOpen, toggleCart}= useGlobalStores()
+  const {cart} = useShoppingCart();
+  console.log(cart.length)
 
   return (
     <div>
@@ -29,7 +30,7 @@ function ShoppingCart() {
         </div>
         <div className={styles.body}>
           {cart.length === 0 ?
-            <div className={styles.vacio}>
+            <div className={styles.empty}>
               EL CARRITO ESTA VACIO
             </div>
             :
@@ -42,8 +43,8 @@ function ShoppingCart() {
                 <div className={`${styles.offer} ${styles.section}`}>
 
                 </div>
-                <div className={styles.see_cart}>
-              <ButtonPrimary title='VER CARRITO'/>
+              <div className={styles.see_cart}>
+              <ButtonPrimary title='VER CARRITO' type='link' href='/cart' />
               </div>
             </section>
           }

@@ -3,7 +3,7 @@ import { create } from "zustand";
 
 
 
-export const useGlobalStore = create<GlobalStateType>((set) => ({
+export const GlobalStore = create<GlobalStateType>((set) => ({
   isMenuOpen: false,
   isCartOpen: false,
   toggleMenu: () => set((state) => ({ isMenuOpen: !state.isMenuOpen })),
