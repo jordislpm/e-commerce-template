@@ -10,7 +10,7 @@ interface ProductCardCartType {
 
 
 function ProductCardCart({product}:ProductCardCartType) {
-    const {images, name, price, quantity, id}= product;
+    const {images, name, price, quantity, id, kind}= product;
 
     const {increaseQuantity, decreaseQuantity, removeProduct} = useShoppingCart();
   return (
@@ -19,7 +19,7 @@ function ProductCardCart({product}:ProductCardCartType) {
         <div className={styles.main}>
             <h2 className={styles.name}>{name}</h2>
             <h3 className={styles.price}>$/ {price}</h3>
-            <h3 className={styles.variant}>Medium / Blanco</h3>
+            <h3 className={styles.variant}>{kind}</h3>
             <div className={styles.quantity}>
                 <div className={styles.quantity_opcions}>
                 <button 

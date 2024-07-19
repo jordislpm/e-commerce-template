@@ -4,26 +4,26 @@ import styles from "./ButtonPrimary.module.css"
 import { ButtonPrimaryType } from '@/types'
 import Link from 'next/link'
 
-function ButtonPrimary({ title, buttonClick, type = 'button', styleType = 'primary', href }: ButtonPrimaryType) {
+function ButtonPrimary({ title, buttonClick, type = 'button', styleType = 'primary', href, className }: ButtonPrimaryType) {
     const onClick = () => {
         if (buttonClick) {
             buttonClick()
         }
     }
 
-    const className = `${styles.button} ${styleType === 'primary' ? styles.primary : styles.secondary}`;
+    const classNameAll = `${styles.button} ${className} ${styleType === 'primary' ? styles.primary : styles.secondary}`;
 
 
     if (type === 'link' && href) {
         return (
-            <Link href={href} className={className} onClick={onClick}>
+            <Link href={href} className={classNameAll} onClick={onClick}>
                     {title?.toLocaleUpperCase()}
             </Link>
         );
     }
 
     return (
-        <button className={className} onClick={onClick}>
+        <button className={classNameAll} onClick={onClick}>
             {title?.toLocaleUpperCase()}
         </button>
     );

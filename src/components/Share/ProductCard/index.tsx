@@ -9,6 +9,9 @@ import { formatPrice } from '@/services/format';
 
 import useGlobalStores from '@/hooks/useGlobalStates';
 import useShoppingCart from '@/hooks/useShoppingCart';
+import { IoCloseSharp } from 'react-icons/io5';
+import ProductVariants from '../ProductVariants';
+import ButtonPrimary from '../ButtonPrimary';
 
 interface ProductCardProps {
   product: Product;
@@ -17,11 +20,11 @@ interface ProductCardProps {
 function ProductCard({ product }: ProductCardProps) {
 
   const [showDetails, setShowDetails] = useState<boolean>(false);
-  const {addProductToCart, cart} = useShoppingCart();
-  const {isCartOpen, toggleCart}= useGlobalStores();
- 
+  const { addProductToCart, cart } = useShoppingCart();
+  const { isCartOpen, toggleCart } = useGlobalStores();
+
   const [newProduct, setNewProduct] = useState({
- ...product,
+    ...product,
     quantity: 1,
   });
 
@@ -33,16 +36,24 @@ function ProductCard({ product }: ProductCardProps) {
 
   const { images, name, price, variants } = product;
 
-  const addToCart = ()=>{
-    if(variants.length > 0){
+  const addToCart = () => {
+    if (variants.length > 0) {
       toggleModal();
-      return ;
+      return;
     }
     addProductToCart(newProduct);
-   toggleCart()
-    console.log(cart);
+    toggleCart()
 
   }
+
+  const addToCartVariant = () => {
+    addProductToCart(newProduct)
+    toggleModal();
+    toggleCart();
+  }
+
+  console.log("variants size: " + variants.some((variant) => (variant.size)));
+  console.log("variants color: " + variants.some((variant) => (variant.color)))
 
   return (
     <>
@@ -54,7 +65,7 @@ function ProductCard({ product }: ProductCardProps) {
             height={20}
             layout="responsive"
             src={images[0]}
-            alt={name} 
+            alt={name}
           />
           <button
             onClick={addToCart}
@@ -75,12 +86,39 @@ function ProductCard({ product }: ProductCardProps) {
             onClick={toggleModal}>
           </div>
           <div className={`${styles.show_details} ${showDetails ? styles.show_details__active : styles.show_details__desactive}`}>
-            PRODUCT DETAILS
+            <div className={`${styles.details_header} ${styles.details_section}`}>
+              ELIGE OPCIONES
+              <IoCloseSharp className={styles.close_modal} onClick={toggleModal} size={25} />
+            </div>
+
+            <div className={`${styles.details_body} ${styles.details_section}`}>
+              <div className={styles.details_image_container}>
+                <Image
+                  className={styles.details_image}
+                  width={20}
+                  height={20}
+                  layout="responsive"
+                  src={images[0]}
+                  alt={name}
+                />
+              </div>
+              <h3 className={styles.details_name}>{name}</h3>
+              <p className={styles.details_price}>$/ {formatPrice(price)}</p>
+            </div>
+            <div className={styles.details_footer}>
+              <ProductVariants variants={variants} />
+              <div className={styles.details_button_container}>
+                <ButtonPrimary 
+                title='AÑADIR AL CARRITO' 
+                className={styles.details_button}
+                buttonClick={addToCartVariant}/>
+              </div>
+            </div>
           </div>
-          {variants.map((variant)=>(
-<div>
-  {variant.purchasePrice}
-</div>
+          {variants.map((variant) => (
+            <div>
+              {variant.purchasePrice}
+            </div>
           ))}
         </>,
         document.body

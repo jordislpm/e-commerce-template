@@ -18,7 +18,8 @@ function ShoppingCart() {
   console.log(cart.length)
 
   return (
-    <div>
+    <div className={styles.body_cart}>
+     {cart.length > 0 && <div className={styles.ball}/>}
       <div
         className={`${styles.overlay} ${isCartOpen ? styles.overlayActive : ''}`}
         onClick={toggleCart}>

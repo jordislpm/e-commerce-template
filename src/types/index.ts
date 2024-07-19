@@ -9,6 +9,7 @@ export interface ButtonPrimaryType{
     type?: 'button' | 'link';
     styleType?: 'primary' | 'secondary';
     href?: string;
+    className?: string;
 }
 
 export interface SubRoutesType{
