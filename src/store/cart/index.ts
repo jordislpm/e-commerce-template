@@ -21,48 +21,109 @@ export const cartStore = create<CartStateType>()(
       addProductToCart: (product: CartProductType) => {
         const { cart } = get();
         const productInCart = cart.some((item) => item.id === product.id);
-
-        if (!productInCart) {
+        const productVariantInCart = cart.some((item) => {
+          if (product.variantSelected && item.variantSelected) {
+              return item.variantSelected.variantId === product.variantSelected.variantId
+          }
+        });
+        if (!productInCart && !product.variantSelected) {
           set({ cart: [...cart, product] });
+          return;
+        }else if(productInCart && !product.variantSelected) {
+          const updatedCartProducts = cart.map((item) => {
+            if (item.id === product.id) {
+              return { ...item, quantity: item.quantity + product.quantity };
+            }
+            return item;
+          });
+          set({ cart: updatedCartProducts });
           return;
         }
 
-        const updatedCartProducts = cart.map((item) => {
-          if (item.id === product.id) {
-            return { ...item, quantity: item.quantity + product.quantity };
+        if (!productInCart && product.variantSelected) {
+          if (!productVariantInCart) {
+            set({ cart: [...cart, product] });
+            return;
           }
-          return item;
-        });
+        } else if (productInCart && product.variantSelected) {
+          if (!productVariantInCart) {
+            set({ cart: [...cart, product] });
+            
+            return;
+          } else if (productVariantInCart) {
+            const updatedCartProducts = cart.map((item) => {
+              if (item.variantSelected?.variantId === product.variantSelected?.variantId) {
+                return { ...item, quantity: item.quantity + product.quantity };
+              }
+              return item;
+            });
 
-        set({ cart: updatedCartProducts });
+            set({ cart: updatedCartProducts });
+
+          }
+        }
       },
-      removeProduct: (id: string) => {
+      removeProduct: (product: CartProductType) => {
+
         const { cart } = get();
-        const updatedCartProducts = cart.filter((item) => item.id !== id);
+
+        if (product.variantSelected){
+          const updatedCartProducts = cart.filter((item) => item?.variantSelected?.variantId !== product.variantSelected?.variantId);
         set({ cart: updatedCartProducts });
+        } else{
+          const updatedCartProducts = cart.filter((item) => item.id !== product.id);
+          set({ cart: updatedCartProducts });
+        }
+
+       
+    
       },
-      increaseQuantity: (id: string) => {
+      increaseQuantity: (product: CartProductType) => {
         const { cart } = get();
         const updatedCartProducts = cart.map((item) => {
-          if (item.id === id) {
-            if(item.quantity < item.stock){
+
+          if (product.variantSelected){
+            if (item.variantSelected?.variantId === product.variantSelected?.variantId) {
+              if (item.quantity < item.stock) {
                 return { ...item, quantity: item.quantity + 1 };
-            } else{
-             alert("Haz alcanzado el limite de unidades disponibles en nuestro stock.")
+              } else {
+                alert("Haz alcanzado el limite de unidades disponibles en nuestro stock.")
+              }
             }
-           
-          }
-          return item;
+            return item;
+
+          } else{
+            if (item.id === product.id) {
+              if (item.quantity < item.stock) {
+                return { ...item, quantity: item.quantity + 1 };
+              } else {
+                alert("Haz alcanzado el limite de unidades disponibles en nuestro stock.")
+              }
+            }
+            return item;
+          }  
         });
         set({ cart: updatedCartProducts });
       },
-      decreaseQuantity: (id: string) => {
+      decreaseQuantity: (product: CartProductType) => {
         const { cart } = get();
+
+
         const updatedCartProducts = cart.map((item) => {
-          if (item.id === id && item.quantity > 1) {
-            return { ...item, quantity: item.quantity - 1 };
+
+
+          if(product.variantSelected){
+            if (item.variantSelected?.variantId === product.variantSelected?.variantId && item.quantity > 1) {
+              return { ...item, quantity: item.quantity - 1 };
+            }
+            return item;
+          } else{
+            if (item.id === product.id && item.quantity > 1) {
+              return { ...item, quantity: item.quantity - 1 };
+            }
+            return item;
           }
-          return item;
+          
         });
         set({ cart: updatedCartProducts });
       },

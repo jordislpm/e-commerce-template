@@ -1,6 +1,6 @@
 
 import { ReactNode } from "react";
-import { Product } from "helebba-sdk";
+import { Product, ProductVariant } from "helebba-sdk";
 
 
 export interface ButtonPrimaryType{
@@ -49,34 +49,9 @@ export interface ChildrenType {
     updatedAt: Date;
   }
 
-  export interface VariantType {
-    variantId: string;
-    barcode: string;
-    sku: string;
-    price: number;
-    cost: number;
-    purchasePrice: number;
-    stock: number;
-  }
+
   
-  export interface ProductType {
-    kind: string;
-    name: string;
-    desc: string;
-    contactName: string;
-    price: number;
-    inCatalog: boolean;
-    tags: string[];
-    images: string[];
-    status: 'active' | 'inactive';
-    account: string;
-    variants: VariantType[];
-    notes: string[];
-    slug: string;
-    createdAt: string;
-    updatedAt: string;
-    id: string;
-  }
+ 
   
   export interface pageInfoType {
     page: number | null;
@@ -87,10 +62,7 @@ export interface ChildrenType {
     previousPage: number | null;
   }
   
-  export interface ItemListType {
-    items: ProductType[];
-    pageInfo: pageInfoType;
-  }
+ 
 
 
 export interface categorieType{
@@ -101,6 +73,7 @@ export interface categorieType{
 
 export interface CartProductType extends Product {
   quantity: number;
+  variantSelected?:ProductVariant|undefined;
 }
 
 export interface CartStateType {
@@ -108,9 +81,9 @@ export interface CartStateType {
   getTotalItems: () => number;
   getTotalValueItems: () => number;
   addProductToCart: (product: CartProductType) => void;
-  removeProduct: (id: string) => void;
-  increaseQuantity: (id: string) => void;
-  decreaseQuantity: (id: string) => void;
+  removeProduct: (product: CartProductType) => void;
+  increaseQuantity: (product: CartProductType) => void;
+  decreaseQuantity: (product: CartProductType) => void;
 }
 
 export interface GlobalStateType {
@@ -118,4 +91,17 @@ export interface GlobalStateType {
   isCartOpen: boolean;
   toggleMenu: () => void;
   toggleCart: () => void;
+}
+
+
+export interface VariantSelectedType {
+  color: string;
+  size: string;
+}
+
+export interface VariantSelectedGlobaType {
+  variantSelected: VariantSelectedType;
+  isVariantAvailable: boolean;
+  setVariantSelected: (variant: Partial<VariantSelectedType>) => void;
+  setIsVariantAvailable: (availability: boolean) => void;
 }
