@@ -89,19 +89,24 @@ export interface CartStateType {
 export interface GlobalStateType {
   isMenuOpen: boolean;
   isCartOpen: boolean;
+  showProductDetails: boolean;
   toggleMenu: () => void;
   toggleCart: () => void;
+  toggleShowProductDetails: () => void;
+
 }
 
 
 export interface VariantSelectedType {
   color: string;
   size: string;
+  haveSize: boolean,
+  haveColor:boolean,
 }
 
 export interface VariantSelectedGlobaType {
-  variantSelected: VariantSelectedType;
+  theVariantSelected: VariantSelectedType;
   isVariantAvailable: boolean;
-  setVariantSelected: (variant: Partial<VariantSelectedType>) => void;
+  setTheVariantSelected: (variant: Partial<VariantSelectedType>) => void;
   setIsVariantAvailable: (availability: boolean) => void;
 }

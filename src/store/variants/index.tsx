@@ -2,14 +2,16 @@ import create from 'zustand';
 import { VariantSelectedGlobaType, VariantSelectedType } from '@/types';
 
 const variantSelectedGlobal = create<VariantSelectedGlobaType>((set) => ({
-  variantSelected: {
+  theVariantSelected: {
     color: "",
-    size: ""
+    size: "",
+    haveColor:false,
+    haveSize: false,
   },
   isVariantAvailable: true,
-  setVariantSelected: (variant: Partial<VariantSelectedType>) => set((state) => ({
-    variantSelected: {
-      ...state.variantSelected,
+  setTheVariantSelected: (variant: Partial<VariantSelectedType>) => set((state) => ({
+    theVariantSelected: {
+      ...state.theVariantSelected,
       ...variant
     }
   })),

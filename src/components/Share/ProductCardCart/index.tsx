@@ -23,7 +23,8 @@ function ProductCardCart({product}:ProductCardCartType) {
             <h3 className={styles.variant}>
                 {kind ==="simple" && kind.toLocaleLowerCase()}
                 {variantSelected && variantSelected.size.toLocaleLowerCase()}
-                {variantSelected?.color && ` / ${variantSelected.name.toLocaleLowerCase()}`}
+                {variantSelected?.size && variantSelected?.color ? " / " : ""}
+                {variantSelected?.color && `${variantSelected.name.toLocaleLowerCase()}`}
             </h3>
             <div className={styles.quantity}>
                 <div className={styles.quantity_opcions}>

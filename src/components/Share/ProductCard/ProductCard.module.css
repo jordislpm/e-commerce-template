@@ -162,6 +162,7 @@
 .details_name {
   font-weight: 300;
   font-size: 0.9rem;
+  text-align:center;
 }
 
 .details_price {

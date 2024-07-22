@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styles from "./ProductCard.module.css";
 import Image from 'next/image';
@@ -22,13 +22,35 @@ function ProductCard({ product }: ProductCardProps) {
 
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const { addProductToCart, cart } = useShoppingCart();
-  const { isCartOpen, toggleCart } = useGlobalStores();
-  const { isVariantAvailable, variantSelected } = useVariantsSelected();
+  const { isCartOpen, toggleCart, toggleShowProductDetails, showProductDetails } = useGlobalStores();
+  const { isVariantAvailable, theVariantSelected } = useVariantsSelected();
+console.log("render");
 
-  const [newProduct, setNewProduct] = useState({
-    ...product,
-    quantity: 1,
-  });
+
+const newProductRef = useRef<CartProductType>({
+  ...product,
+  quantity: 1,
+});
+
+  let pickedVariant: ProductVariant | undefined= undefined
+ 
+  useEffect(()=>{
+    for (const variant of variants) {
+      if (variant.color) {
+        if (variant.size === theVariantSelected.size && variant.color === theVariantSelected.color){
+          pickedVariant = variant;
+        }
+    } else {
+        if (variant.size === theVariantSelected.size) {
+          pickedVariant = variant;
+        }
+      }
+    }
+    newProductRef.current = {
+      ...newProductRef.current, variantSelected: pickedVariant
+    };
+ 
+  },[theVariantSelected])
 
 
   const toggleModal = () => {
@@ -43,38 +65,23 @@ function ProductCard({ product }: ProductCardProps) {
       toggleModal();
       return;
     }
-    addProductToCart(newProduct);
-    toggleCart()
-
-  }
-
-  const addToCartVariant = () => {
-    let pickedVariant: ProductVariant | undefined= undefined
-    for (const variant of variants) {
-      if (variant.color) {
-        if (variant.size === variantSelected.size && variant.color === variantSelected.color){
-          pickedVariant = variant;
-        }
-
-    } else {
-        if (variant.size === variantSelected.size) {
-          pickedVariant = variant;
-        }
-      }
-    }
-
-    const productWithVariant: CartProductType = {
-      ...newProduct, variantSelected: pickedVariant
-    }
-    addProductToCart(productWithVariant)
+    addProductToCart(newProductRef.current);
     toggleModal();
-    toggleCart();
+    toggleCart()
   }
 
   const productoAgotado = () => {
     alert("Elige otra de nuestras opciones, este producto esta agotado temporalmente, disculpa los inconvenientes")
   }
+  
+  const addToCartVariant = () => {
 
+    addProductToCart(newProductRef.current);
+    toggleModal();
+    toggleCart();
+  }
+ 
+  console.log("render en productCard")
   return (
     <>
       <div className={styles.card}>
@@ -98,7 +105,9 @@ function ProductCard({ product }: ProductCardProps) {
           <p className={styles.price}>Desde $/ {formatPrice(price)}</p>
         </div>
       </div>
-      {/* Renderiza el overlay y los detalles fuera del contenedor */}
+      {/* inicia Renderiza el overlay y los detalles fuera del contenedor */}
+
+      
       {showDetails && ReactDOM.createPortal(
         <>
           <div
@@ -110,7 +119,6 @@ function ProductCard({ product }: ProductCardProps) {
               ELIGE OPCIONES
               <IoCloseSharp className={styles.close_modal} onClick={toggleModal} size={25} />
             </div>
-
             <div className={`${styles.details_body} ${styles.details_section}`}>
               <div className={styles.details_image_container}>
                 <Image
@@ -123,7 +131,12 @@ function ProductCard({ product }: ProductCardProps) {
                 />
               </div>
               <h3 className={styles.details_name}>{name}</h3>
-              <p className={styles.details_price}>$/ {formatPrice(price)}</p>
+              <p className={styles.details_price}>
+                {newProductRef.current.variantSelected && newProductRef.current.variantSelected.price !==0 ?
+                `$/ ${formatPrice(newProductRef.current.variantSelected.price)}`
+                :
+                `$/ ${formatPrice(price)}`
+                }</p>
             </div>
             <div className={styles.details_footer}>
               <ProductVariants variants={variants} />
@@ -150,6 +163,7 @@ function ProductCard({ product }: ProductCardProps) {
         </>,
         document.body
       )}
+      {/* termina Renderiza el overlay y los detalles fuera del contenedor */}
     </>
   );
 }

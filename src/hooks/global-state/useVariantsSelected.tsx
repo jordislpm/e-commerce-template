@@ -1,16 +1,16 @@
 import variantSelectedGlobal from "@/store/variants";
 
 const useVariantsSelected = () => {
-  const variantSelected = variantSelectedGlobal((state) => state.variantSelected);
+  const theVariantSelected = variantSelectedGlobal((state) => state.theVariantSelected);
   const isVariantAvailable = variantSelectedGlobal((state) => state.isVariantAvailable);
-  const setVariantSelected = variantSelectedGlobal((state) => state.setVariantSelected);
+  const setTheVariantSelected = variantSelectedGlobal((state) => state.setTheVariantSelected);
   const setIsVariantAvailable = variantSelectedGlobal((state) => state.setIsVariantAvailable);
 
   return {
-    variantSelected,
+    theVariantSelected,
     isVariantAvailable,
     setIsVariantAvailable,
-    setVariantSelected
+    setTheVariantSelected
   };
 };
 
