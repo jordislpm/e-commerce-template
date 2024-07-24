@@ -11,145 +11,146 @@ export const PROJECT_SOCIAL = {
 
 export const RoutesNav = [
     {
-        name: "STARTER PACK [PLUMÓN + FUNDA]",
-        route: "/starter-pack-plumon-funda"
+        name: "PACKS",
+        route: "/pack",
+        subRoutes: []
     },
     {
         name: "CAMA",
         route: "/bed",
         subRoutes: [
-            {
-                name: "VER TODO",
-                route: "/bed",
-            },
-            {
-                name: "ALMOHADAS HIPOALERGÉNICAS",
-                route: "/about",
-            },
-            {
-                name: "BED TOPPER",
-                route: "/about",
-            },
-            {
-                name: "FUNDAS DE PLUMÓN/CUBRECAMAS",
-                route: "/about",
-            },
-            {
-                name: "SÁBANAS",
-                route: "/about",
-            },
-            {
-                name: "PLUMÓN HIPOALERGÉNICO",
-                route: "/about",
-            },
-            {
-                name: "PROTECTOR DE COLCHÓN",
-                route: "/about",
-            },
-            {
-                name: "FUNDAS DE ALMOHADA",
-                route: "/about",
-            },
-            {
-                name: "PROTECTORES DE ALMOHADA",
-                route: "/about",
-            },
+            // {
+            //     name: "VER TODO",
+            //     route: "/bed",
+            // },
+            // {
+            //     name: "ALMOHADAS HIPOALERGÉNICAS",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "BED TOPPER",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "FUNDAS DE PLUMÓN/CUBRECAMAS",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "SÁBANAS",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "PLUMÓN HIPOALERGÉNICO",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "PROTECTOR DE COLCHÓN",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "FUNDAS DE ALMOHADA",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "PROTECTORES DE ALMOHADA",
+            //     route: "/about",
+            // },
         ]
     },
     {
         name: "BAÑO Y SPA",
         route: "/bath",
         subRoutes: [
-            {
-                name: "VER TODO",
-                route: "/bath",
-            },
-            {
-                name: "TOALLAS",
-                route: "/about",
-            },
-            {
-                name: "PISOS DE BAÑO",
-                route: "/about",
-            },
-            {
-                name: "PORTACEPILLOS",
-                route: "/about",
-            },
-            {
-                name: "DISPENSADORES",
-                route: "/about",
-            },
-            {
-                name: "ANTIFACES",
-                route: "/about",
-            },
-            {
-                name: "BATAS",
-                route: "/about",
-            },
-            {
-                name: "TURBANTES",
-                route: "/about",
-            },
-            {
-                name: "PANTUFLAS",
-                route: "/about",
-            },
+            // {
+            //     name: "VER TODO",
+            //     route: "/bath",
+            // },
+            // {
+            //     name: "TOALLAS",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "PISOS DE BAÑO",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "PORTACEPILLOS",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "DISPENSADORES",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "ANTIFACES",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "BATAS",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "TURBANTES",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "PANTUFLAS",
+            //     route: "/about",
+            // },
         ]
     },
     {
         name: "DECORACIÓN",
         route: "/decor",
         subRoutes: [
-            {
-                name: "VER TODO",
-                route: "/decor",
-            },
-            {
-                name: "COJINES",
-                route: "/about",
-            },
-            {
-                name: "JARRONES",
-                route: "/about",
-            },
-            {
-                name: "SERVILLETAS",
-                route: "/about",
-            },
-            {
-                name: "RELOJ DE ARENA",
-                route: "/about",
-            },
+            // {
+            //     name: "VER TODO",
+            //     route: "/decor",
+            // },
+            // {
+            //     name: "COJINES",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "JARRONES",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "SERVILLETAS",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "RELOJ DE ARENA",
+            //     route: "/about",
+            // },
         ]
     },
     {
         name: "ORGANIZACIÓN",
         route: "/setup",
         subRoutes: [
-            {
-                name: "VER TODO",
-                route: "/setup",
-            },
-            {
-                name: "CESTAS",
-                route: "/about",
-            },
-            {
-                name: "BOLSAS AL VACIO",
-                route: "/about",
-            },
-            {
-                name: "PORTA SABANAS",
-                route: "/about",
-            },
+            // {
+            //     name: "VER TODO",
+            //     route: "/setup",
+            // },
+            // {
+            //     name: "CESTAS",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "BOLSAS AL VACIO",
+            //     route: "/about",
+            // },
+            // {
+            //     name: "PORTA SABANAS",
+            //     route: "/about",
+            // },
         ]
     },
-    {
-        name: "📍NUESTRAS TIENDAS📍",
-        route: "/stores"
-    },
+    // {
+    //     name: "📍NUESTRAS TIENDAS📍",
+    //     route: "/stores"
+    // },
 ]
 
 

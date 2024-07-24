@@ -10,11 +10,14 @@ import useGlobalStores from '@/hooks/global-state/useGlobalStates';
 
 
 
+
 function ShoppingCart() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const { isCartOpen, toggleCart } = useGlobalStores()
   const { cart } = useShoppingCart();
+
+  console.log(cart)
 
   useEffect(() => {
     if (isCartOpen) {
@@ -79,7 +82,7 @@ function ShoppingCart() {
                 </div>
               </div>
               <div className={styles.see_cart}>
-                <ButtonPrimary title='VER CARRITO' type='link' href='/cart' />
+                <ButtonPrimary title='VER CARRITO' type='link' href='/cart' buttonClick={toggleCart}/>
               </div>
             </section>
           }

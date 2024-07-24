@@ -10,7 +10,7 @@ import ButtonPrimary from '../ButtonPrimary';
 
 interface ProductsSectionProps {
     title: string;
-    filter: "all" | "bed" | "bath" | "decor"| "setup";
+    filter: "all" | "bed" | "bath" | "decor"| "setup" | "pack";
     cloud?: boolean;
     
 }

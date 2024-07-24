@@ -80,9 +80,6 @@ const ProductVariants = ({ variants }: ProductVariantsProps) => {
     variantsRef.current.filter((value, index, self) =>
       index === self.findIndex((t) => t.size === value.size)
     ), []);
-
-    console.log("render en productCaVariants")
-
   return (
     <div className={styles.body}>
       {variantsRef.current.some((variant) => variant.size) && (

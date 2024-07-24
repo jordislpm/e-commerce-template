@@ -1,13 +1,24 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoMenuSharp, IoCloseSharp } from "react-icons/io5";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import styles from "./Nav.module.css"
 import Link from 'next/link';
-import { RoutesListType } from '@/types';
-import { useProjectRoutes } from '@/hooks/useProjectRoutes';
+import { RouteProps, RoutesListType } from '@/types';
+import { Product, Category } from "helebba-sdk";
+import useRoutesStore from '@/hooks/route/useProjectRoutes';
+import { RoutesNav } from '@/contast';
 
-function Nav() {
+
+
+
+interface NavProps{
+    categories: Category[];
+    products: Product[]
+}
+
+function Nav({categories, products}:NavProps) {
+
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [subMenu, setSubMenu] = useState<{ route: String, state: boolean, subRoute: RoutesListType[] | undefined }>(
         {
@@ -16,7 +27,47 @@ function Nav() {
             route: ""
         }
     );
-    const { projectRoutes } = useProjectRoutes();
+
+    const {routes, setRoutes}= useRoutesStore();
+
+    useEffect(()=>{
+
+        const categorieNames: string[] = categories.map((categorie)=>{
+                    return categorie.name
+        });
+
+
+        const newRoutes: RouteProps[] = categories.map((categorie)=>{
+         const index = RoutesNav.findIndex(item => item.route.includes(categorie.name));
+         return RoutesNav[index]
+        })
+        products.forEach((product)=>{
+            product.categories.forEach((productCategorie)=>{
+                    if(categorieNames.includes(productCategorie.name)){
+                     const index=  newRoutes.findIndex(item => item.route.includes(productCategorie.name))
+                     const subRouteExist = newRoutes[index].subRoutes?.some(item => item.name === product.name)
+                     if(newRoutes[index].subRoutes?.length === 0){
+                        newRoutes[index].subRoutes.push({
+                            name: "VER TODO",
+                            route: "/bed",
+                            slug: ""
+                        })
+                     }
+                     if (!subRouteExist){
+                     newRoutes[index].subRoutes?.push(
+                        {
+                        name: product.name,
+                        route: productCategorie.name,
+                        slug: product.slug
+                     }
+                    )
+                    }
+                    }
+            })
+        })
+        setRoutes(newRoutes)
+
+    },[categories, setRoutes, products])
 
     const toggleSubMenuState = () => {
         setSubMenu(prevState => ({
@@ -60,9 +111,10 @@ function Nav() {
             >
                 <IoCloseSharp onClick={closeModal} size={30} />
                 <div className={styles.navMenu}>
-                    {!subMenu.state && <div className={styles.list}>
-                        {projectRoutes.map((route, index) => (
-                            !route.subRoutes ? (
+                    {!subMenu.state &&
+                    <div className={styles.list}>
+                        {routes.map((route, index) => (
+                            route.subRoutes.length < 1 ? (
                                 <Link
                                     onClick={toggleModal}
                                     key={route.name}
@@ -82,6 +134,14 @@ function Nav() {
                                 </div>
                             )
                         ))}
+                         <Link
+                                    onClick={toggleModal}
+                                    href="stores"
+                                    className={`${styles.link}`}
+                                >
+                                  📍NUESTRAS TIENDAS📍
+                                </Link>
+
                     </div>}
                     {subMenu.state &&
                         <div className={`${styles.sub_list} ${subMenu ? styles.sub_list__active : ""}`}>

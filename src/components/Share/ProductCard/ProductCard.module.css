@@ -176,6 +176,7 @@
   width: 100%;
   height: 100%;
   padding-bottom: 1rem;
+  padding: 1rem;
 }
 
 .details_button_container{
@@ -186,7 +187,7 @@
 }
 
 .details_button{
-  width:90%;
+  width:100%;
 }
 
 

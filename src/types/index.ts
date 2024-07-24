@@ -90,6 +90,8 @@ export interface GlobalStateType {
   isMenuOpen: boolean;
   isCartOpen: boolean;
   showProductDetails: boolean;
+  productForShowDetails: CartProductType | null;
+  setProductForShowDetails: (product: CartProductType) => void;
   toggleMenu: () => void;
   toggleCart: () => void;
   toggleShowProductDetails: () => void;
@@ -109,4 +111,33 @@ export interface VariantSelectedGlobaType {
   isVariantAvailable: boolean;
   setTheVariantSelected: (variant: Partial<VariantSelectedType>) => void;
   setIsVariantAvailable: (availability: boolean) => void;
+}
+
+export interface RouteProps {
+  name: string;
+  route: string;
+  subRoutes: SubRoutesProps[];
+}
+
+export interface SubRoutesProps{
+  name: string;
+  route: string;
+  slug: string;
+}
+
+export interface RoutesStateProps {
+  routes: RouteProps[];
+  setRoutes: (routes: RouteProps[]) => void;
+}
+
+export interface CategoryProps {
+  name: string;
+  type: string;
+  options: any[];
+  image: string;
+  status: string;
+  account: string;
+  createdAt: string;
+  updatedAt: string;
+  id: string;
 }

@@ -1,4 +1,4 @@
-
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { helebba } from '@/apiContast';
 import { Product } from "helebba-sdk"
 
@@ -23,3 +23,16 @@ export async function GetProductsServer(): Promise<ProductsResponse> {
         return { items: [], count: 0, pageInfo: {} as any };
     }
 }
+
+/// get one product
+
+
+
+export const getProductHandler = async (slug: string): Promise<Product> => {
+    try {
+      const product = await helebba.getProduct(slug);
+      return product;
+    } catch (error) {
+      throw new Error('Error fetching product data');
+    }
+  };

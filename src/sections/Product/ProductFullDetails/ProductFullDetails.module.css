@@ -1,0 +1,54 @@
+.main{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    height:100%;
+}
+
+.image_container {
+    width: 100%;
+    padding-top: 100%; 
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+  }
+
+  .section{
+display:flex;
+flex-direction: column;
+justify-center: center;
+width:100%;
+height:auto;
+padding:2rem 1rem;
+gap:1rem;
+  }
+
+  .name{
+    display: flex;
+    width:100%;
+    font-size:1.4rem;
+    font-weight:400;
+    margin-bottom:0.5rem;
+  }
+
+  .price{
+    width:100%;
+    font-size:1.2rem;
+    font-weight:400;
+    color: var(--gray-principal);
+  }
+
+  .desc{
+    width:100%;
+    font-size:0.8rem;
+    font-weight:400;
+    margin-bottom: 1rem;
+  }

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styles from "./ProductCard.module.css";
 import Image from 'next/image';
@@ -13,6 +13,7 @@ import ProductVariants from '../ProductVariants';
 import ButtonPrimary from '../ButtonPrimary';
 import useVariantsSelected from '@/hooks/global-state/useVariantsSelected';
 import { CartProductType } from '@/types';
+import { useRouter } from 'next/navigation'
 
 interface ProductCardProps {
   product: Product;
@@ -20,21 +21,26 @@ interface ProductCardProps {
 
 function ProductCard({ product }: ProductCardProps) {
 
+  const { images, name, price, variants } = product;
+
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const { addProductToCart, cart } = useShoppingCart();
-  const { isCartOpen, toggleCart, toggleShowProductDetails, showProductDetails } = useGlobalStores();
+  const { isCartOpen, toggleCart, setProductForShowDetails} = useGlobalStores();
   const { isVariantAvailable, theVariantSelected } = useVariantsSelected();
-console.log("render");
 
-
-const newProductRef = useRef<CartProductType>({
+const [newProduct, setNewProduct]= useState<CartProductType>({
   ...product,
   quantity: 1,
 });
 
-  let pickedVariant: ProductVariant | undefined= undefined
+
+
+const router = useRouter();
+
+  
  
   useEffect(()=>{
+    let pickedVariant: ProductVariant | undefined= undefined
     for (const variant of variants) {
       if (variant.color) {
         if (variant.size === theVariantSelected.size && variant.color === theVariantSelected.color){
@@ -46,11 +52,12 @@ const newProductRef = useRef<CartProductType>({
         }
       }
     }
-    newProductRef.current = {
-      ...newProductRef.current, variantSelected: pickedVariant
-    };
- 
-  },[theVariantSelected])
+
+    setNewProduct(prevProduct => ({
+      ...prevProduct,
+      variantSelected: pickedVariant
+    }));
+  },[theVariantSelected, variants])
 
 
   const toggleModal = () => {
@@ -58,15 +65,14 @@ const newProductRef = useRef<CartProductType>({
   };
 
 
-  const { images, name, price, variants } = product;
+
 
   const addToCart = () => {
     if (variants.length > 0) {
       toggleModal();
       return;
     }
-    addProductToCart(newProductRef.current);
-    toggleModal();
+    addProductToCart(newProduct);
     toggleCart()
   }
 
@@ -76,12 +82,17 @@ const newProductRef = useRef<CartProductType>({
   
   const addToCartVariant = () => {
 
-    addProductToCart(newProductRef.current);
+    addProductToCart(newProduct);
     toggleModal();
     toggleCart();
   }
- 
-  console.log("render en productCard")
+
+  const openProduct = ()=>{
+    setProductForShowDetails(newProduct);
+console.log("opening product")
+router.push(`/product?${newProduct.slug}`);
+  }
+
   return (
     <>
       <div className={styles.card}>
@@ -93,6 +104,7 @@ const newProductRef = useRef<CartProductType>({
             layout="responsive"
             src={images[0]}
             alt={name}
+            onClick={openProduct}
           />
           <button
             onClick={addToCart}
@@ -132,11 +144,12 @@ const newProductRef = useRef<CartProductType>({
               </div>
               <h3 className={styles.details_name}>{name}</h3>
               <p className={styles.details_price}>
-                {newProductRef.current.variantSelected && newProductRef.current.variantSelected.price !==0 ?
-                `$/ ${formatPrice(newProductRef.current.variantSelected.price)}`
+                {newProduct.variantSelected && newProduct.variantSelected.price !==0 ?
+                `$/ ${formatPrice(newProduct.variantSelected.price)}`
                 :
-                `$/ ${formatPrice(price)}`
-                }</p>
+                `$/${formatPrice(price)}`
+                }
+                </p>
             </div>
             <div className={styles.details_footer}>
               <ProductVariants variants={variants} />
@@ -151,15 +164,14 @@ const newProductRef = useRef<CartProductType>({
                     className={styles.details_button}
                     buttonClick={productoAgotado}
                   />}
-
               </div>
             </div>
           </div>
-          {variants.map((variant) => (
-            <div>
+          {/* {variants.map((variant) => (
+            <div key={variant.id}>
               {variant.purchasePrice}
             </div>
-          ))}
+          ))} */}
         </>,
         document.body
       )}
