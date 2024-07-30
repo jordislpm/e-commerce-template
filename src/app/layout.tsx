@@ -5,6 +5,7 @@ import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import styles from "./page.module.css"
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

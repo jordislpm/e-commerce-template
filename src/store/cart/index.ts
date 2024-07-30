@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Product } from "helebba-sdk";
 import { CartProductType, CartStateType } from "@/types";
 
 export const cartStore = create<CartStateType>()(

@@ -4,12 +4,15 @@ import { IoMenuSharp, IoCloseSharp } from "react-icons/io5";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import styles from "./Nav.module.css"
 import Link from 'next/link';
-import { RouteProps, RoutesListType } from '@/types';
+import { RouteProps, RoutesListType, SubRoutesProps } from '@/types';
 import { Product, Category } from "helebba-sdk";
 import useRoutesStore from '@/hooks/route/useProjectRoutes';
 import { RoutesNav } from '@/contast';
-
-
+import { useRouter } from 'next/navigation'
+import useGlobalStores from '@/hooks/global-state/useGlobalStates';
+import { normalizeString } from '@/services/format';
+import { useGetCategoriesList } from '@/hooks/getData/useGetCategories';
+import { useGetProductsList } from '@/hooks/getData/useGetProductsList';
 
 
 interface NavProps{
@@ -17,44 +20,62 @@ interface NavProps{
     products: Product[]
 }
 
-function Nav({categories, products}:NavProps) {
+function Nav() {
+    const {categoriesList}=useGetCategoriesList()
+    const {productsList}=useGetProductsList()
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [subMenu, setSubMenu] = useState<{ route: String, state: boolean, subRoute: RoutesListType[] | undefined }>(
+    const [subMenu, setSubMenu] = useState<{ route: String, state: boolean, subRoute: SubRoutesProps[] | undefined }>(
         {
             state: false,
             subRoute: [],
             route: ""
         }
     );
+    const {setSlugForGetProduct} = useGlobalStores()
+    const [slug, setSlug]= useState<string>("");
+    const [searchParams, setSearchParams] = useState<URLSearchParams | null>(null);
+    // const{oneProduct} = useGetProduct(slug);
+
+
+    // new productsList
+
+
+    // end new productsList
+    const router = useRouter()
 
     const {routes, setRoutes}= useRoutesStore();
 
     useEffect(()=>{
 
-        const categorieNames: string[] = categories.map((categorie)=>{
+        if (categoriesList && productsList){
+
+        const categorieNames: string[] = categoriesList?.items.map((categorie)=>{
                     return categorie.name
         });
 
 
-        const newRoutes: RouteProps[] = categories.map((categorie)=>{
-         const index = RoutesNav.findIndex(item => item.route.includes(categorie.name));
+        const newRoutes: RouteProps[] = categoriesList?.items.map((categorie)=>{
+         const index = RoutesNav.findIndex(item => normalizeString(categorie.name).includes(normalizeString(item?.route)));
          return RoutesNav[index]
         })
-        products.forEach((product)=>{
+
+   
+        productsList.items.forEach((product)=>{
             product.categories.forEach((productCategorie)=>{
+            
                     if(categorieNames.includes(productCategorie.name)){
-                     const index=  newRoutes.findIndex(item => item.route.includes(productCategorie.name))
-                     const subRouteExist = newRoutes[index].subRoutes?.some(item => item.name === product.name)
-                     if(newRoutes[index].subRoutes?.length === 0){
-                        newRoutes[index].subRoutes.push({
+                     const index=  newRoutes.findIndex(item => normalizeString(item?.name).includes(normalizeString(productCategorie.name)))
+                     const subRouteExist = newRoutes[index]?.subRoutes?.some(item => item.name === product.name)
+                     if(newRoutes[index]?.subRoutes?.length === 0){
+                        newRoutes[index]?.subRoutes.push({
                             name: "VER TODO",
-                            route: "/bed",
+                            route: newRoutes[index]?.route,
                             slug: ""
                         })
                      }
                      if (!subRouteExist){
-                     newRoutes[index].subRoutes?.push(
+                     newRoutes[index]?.subRoutes?.push(
                         {
                         name: product.name,
                         route: productCategorie.name,
@@ -65,9 +86,15 @@ function Nav({categories, products}:NavProps) {
                     }
             })
         })
-        setRoutes(newRoutes)
 
-    },[categories, setRoutes, products])
+        console.log("newRoutes",newRoutes)
+        setRoutes(newRoutes)
+        if (typeof window !== 'undefined') {
+            const params = new URLSearchParams(window.location.search);
+            setSearchParams(params);
+          }
+        }
+    },[categoriesList, setRoutes, productsList])
 
     const toggleSubMenuState = () => {
         setSubMenu(prevState => ({
@@ -77,7 +104,7 @@ function Nav({categories, products}:NavProps) {
     };
 
 
-    const navListClick = (actualRoute: RoutesListType) => {
+    const navListClick = (actualRoute: RouteProps) => {
 
         setSubMenu({
             state: true,
@@ -98,6 +125,21 @@ function Nav({categories, products}:NavProps) {
         }));
     };
 
+    const openProduct = (route: SubRoutesProps) => {
+
+        if (route.name !== "VER TODO") {
+            if (searchParams) {
+                searchParams.set("product", route.slug);
+                setSlugForGetProduct(route.slug)
+                router.push(`/product?${searchParams}`);
+                console.log("route.slug",route.slug)
+              }
+        } else {
+            router.push(`${route.route}`);
+        }
+        toggleModal();
+    }
+
     return (
         <nav className={styles.nav}>
             <IoMenuSharp onClick={toggleModal} size={25} />
@@ -114,7 +156,7 @@ function Nav({categories, products}:NavProps) {
                     {!subMenu.state &&
                     <div className={styles.list}>
                         {routes.map((route, index) => (
-                            route.subRoutes.length < 1 ? (
+                            route?.subRoutes.length < 1 ? (
                                 <Link
                                     onClick={toggleModal}
                                     key={route.name}
@@ -125,11 +167,11 @@ function Nav({categories, products}:NavProps) {
                                 </Link>
                             ) : (
                                 <div
-                                    key={route.name}
+                                    key={route?.name}
                                     onClick={() => navListClick(route)}
                                     className={`${styles.link} ${index > 0 ? styles.link_middle : ""}`}
                                 >
-                                    {route.name}
+                                    {route?.name}
                                     <IoIosArrowForward />
                                 </div>
                             )
@@ -153,16 +195,14 @@ function Nav({categories, products}:NavProps) {
                             </div>
                             {subMenu && subMenu?.subRoute?.map((route, index) => (
 
-                                <Link
-                                    onClick={toggleModal}
+                                <div
+                                    onClick={()=>openProduct(route)}
                                     key={route.name}
-                                    href={`${route.subRoutes ? "" : route.route}`}
                                     className={`${styles.link} ${styles.link_middle}`}
                                 >
                                     {route.name}
-                                    {route.subRoutes &&
-                                        <IoIosArrowForward />}
-                                </Link>
+                                        <IoIosArrowForward />
+                                </div>
                             ))}
                         </div>
                     }

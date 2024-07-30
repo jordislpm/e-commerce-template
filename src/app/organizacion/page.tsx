@@ -1,12 +1,12 @@
 import ProductsSection from '@/components/Share/ProductsSection'
 import React from 'react'
 
-function Setup() {
+function Organizacion() {
   return (
     <> 
-    <ProductsSection title="organizacion" filter='setup'/>
+    <ProductsSection title="organizacion" filter='organizacion'/>
     </>
   )
 }
 
-export default Setup
+export default Organizacion

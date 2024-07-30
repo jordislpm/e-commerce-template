@@ -3,12 +3,12 @@ import BedPrincipal from '@/sections/Bed/BedPrincipal';
 import React from 'react';
 
 
-function Bed() {
+function Cama() {
   return (
     <>
-    <ProductsSection title="cama" filter='bed' cloud={true}/>
+    <ProductsSection title="cama" filter='cama' cloud={true}/>
     </>
   )
 }
 
-export default Bed
+export default Cama

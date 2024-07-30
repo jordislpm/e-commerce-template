@@ -41,6 +41,8 @@ const ProductVariants = ({ variants }: ProductVariantsProps) => {
     setTheVariantSelected(initialColor);
     setTheVariantSelected(initialSize);
     setIsVariantAvailable(initialColor.haveColor || initialSize.haveSize);
+
+    console.log("se esta cambiando color y size inicial")
   }, [initialColor, initialSize, setTheVariantSelected, setIsVariantAvailable]);
 
   useEffect(() => {

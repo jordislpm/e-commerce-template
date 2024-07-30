@@ -17,7 +17,6 @@ function ShoppingCart() {
   const { isCartOpen, toggleCart } = useGlobalStores()
   const { cart } = useShoppingCart();
 
-  console.log(cart)
 
   useEffect(() => {
     if (isCartOpen) {
@@ -69,7 +68,7 @@ function ShoppingCart() {
                   {cart.map((product) => (
                     <React.Fragment key={
                       product.variantSelected ?
-                        product.variantSelected.id
+                        `${product.id}-${product.variantSelected.id}`
                         :
                         product.id
                     }>

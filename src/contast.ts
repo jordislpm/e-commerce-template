@@ -17,7 +17,7 @@ export const RoutesNav = [
     },
     {
         name: "CAMA",
-        route: "/bed",
+        route: "/cama",
         subRoutes: [
             // {
             //     name: "VER TODO",
@@ -59,7 +59,7 @@ export const RoutesNav = [
     },
     {
         name: "BAÑO Y SPA",
-        route: "/bath",
+        route: "/bano",
         subRoutes: [
             // {
             //     name: "VER TODO",
@@ -101,7 +101,7 @@ export const RoutesNav = [
     },
     {
         name: "DECORACIÓN",
-        route: "/decor",
+        route: "/decoracion",
         subRoutes: [
             // {
             //     name: "VER TODO",
@@ -127,7 +127,7 @@ export const RoutesNav = [
     },
     {
         name: "ORGANIZACIÓN",
-        route: "/setup",
+        route: "/organizacion",
         subRoutes: [
             // {
             //     name: "VER TODO",
@@ -158,25 +158,25 @@ export const categories = [
     {
         name: "CAMA",
         image: "/categories/bed.png",
-        route: "bed",
+        route: "cama",
 
     },
     {
         name: "BAÑO Y SPA",
         image: "/categories/bath.png",
-        route: "bath",
+        route: "bano",
 
     },
     {
         name: "DECORACIÓN",
         image: "/categories/decor.png",
-        route: "decor",
+        route: "decoracion",
 
     },
     {
         name: "ORGANIZACIÓN",
         image: "/categories/setup.png",
-        route: "setup",
+        route: "organizacion",
 
     }
 

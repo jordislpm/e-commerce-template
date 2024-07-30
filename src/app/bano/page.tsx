@@ -4,7 +4,7 @@ import React from 'react'
 function Baños() {
   return (
     <>
-    <ProductsSection title="baño" filter='bath'/>
+    <ProductsSection title="baño" filter='bano'/>
     </>
   )
 }

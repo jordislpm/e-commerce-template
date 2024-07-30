@@ -13,7 +13,8 @@ import ProductVariants from '../ProductVariants';
 import ButtonPrimary from '../ButtonPrimary';
 import useVariantsSelected from '@/hooks/global-state/useVariantsSelected';
 import { CartProductType } from '@/types';
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useGetProduct } from '@/hooks/getData/useGetProduct';
 
 interface ProductCardProps {
   product: Product;
@@ -25,28 +26,26 @@ function ProductCard({ product }: ProductCardProps) {
 
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const { addProductToCart, cart } = useShoppingCart();
-  const { isCartOpen, toggleCart, setProductForShowDetails} = useGlobalStores();
+  const { isCartOpen, toggleCart, setProductForShowDetails, setSlugForGetProduct } = useGlobalStores();
   const { isVariantAvailable, theVariantSelected } = useVariantsSelected();
+  const [slug, setSlug] = useState<string>("");
+  // const{oneProduct} = useGetProduct(slug);
 
-const [newProduct, setNewProduct]= useState<CartProductType>({
-  ...product,
-  quantity: 1,
-});
+  const [newProduct, setNewProduct] = useState<CartProductType>({
+    ...product,
+    quantity: 1,
+  });
+  const router = useRouter();
+  const [searchParams, setSearchParams] = useState<URLSearchParams | null>(null);
 
-
-
-const router = useRouter();
-
-  
- 
-  useEffect(()=>{
-    let pickedVariant: ProductVariant | undefined= undefined
+  useEffect(() => {
+    let pickedVariant: ProductVariant | undefined = undefined
     for (const variant of variants) {
       if (variant.color) {
-        if (variant.size === theVariantSelected.size && variant.color === theVariantSelected.color){
+        if (variant.size === theVariantSelected.size && variant.color === theVariantSelected.color) {
           pickedVariant = variant;
         }
-    } else {
+      } else {
         if (variant.size === theVariantSelected.size) {
           pickedVariant = variant;
         }
@@ -57,15 +56,21 @@ const router = useRouter();
       ...prevProduct,
       variantSelected: pickedVariant
     }));
-  },[theVariantSelected, variants])
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      setSearchParams(params);
+    }
+  }, [theVariantSelected, variants, product.slug])
 
+  useEffect(() => {
+
+  }, [
+    // oneProduct
+  ])
 
   const toggleModal = () => {
     setShowDetails(!showDetails);
   };
-
-
-
 
   const addToCart = () => {
     if (variants.length > 0) {
@@ -79,7 +84,7 @@ const router = useRouter();
   const productoAgotado = () => {
     alert("Elige otra de nuestras opciones, este producto esta agotado temporalmente, disculpa los inconvenientes")
   }
-  
+
   const addToCartVariant = () => {
 
     addProductToCart(newProduct);
@@ -87,11 +92,15 @@ const router = useRouter();
     toggleCart();
   }
 
-  const openProduct = ()=>{
-    setProductForShowDetails(newProduct);
-console.log("opening product")
-router.push(`/product?${newProduct.slug}`);
+  const openProduct = () => {
+    if (searchParams) {
+      searchParams.set("product", newProduct.slug);
+      setSlugForGetProduct(newProduct.slug)
+      router.push(`/product?${searchParams}`);
+    }
   }
+
+
 
   return (
     <>
@@ -119,7 +128,7 @@ router.push(`/product?${newProduct.slug}`);
       </div>
       {/* inicia Renderiza el overlay y los detalles fuera del contenedor */}
 
-      
+
       {showDetails && ReactDOM.createPortal(
         <>
           <div
@@ -144,12 +153,12 @@ router.push(`/product?${newProduct.slug}`);
               </div>
               <h3 className={styles.details_name}>{name}</h3>
               <p className={styles.details_price}>
-                {newProduct.variantSelected && newProduct.variantSelected.price !==0 ?
-                `$/ ${formatPrice(newProduct.variantSelected.price)}`
-                :
-                `$/${formatPrice(price)}`
+                {newProduct.variantSelected && newProduct.variantSelected.price !== 0 ?
+                  `$/ ${formatPrice(newProduct.variantSelected.price)}`
+                  :
+                  `$/${formatPrice(price)}`
                 }
-                </p>
+              </p>
             </div>
             <div className={styles.details_footer}>
               <ProductVariants variants={variants} />

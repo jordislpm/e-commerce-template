@@ -1,12 +1,12 @@
 import ProductsSection from '@/components/Share/ProductsSection'
 import React from 'react'
 
-function Decor() {
+function Decoracion() {
   return (
     <> 
-    <ProductsSection title="decoracion" filter='decor'/>
+    <ProductsSection title="decoracion" filter='decoracion'/>
     </>
   )
 }
 
-export default Decor
+export default Decoracion

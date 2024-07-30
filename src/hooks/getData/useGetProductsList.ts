@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react';
-import { Product } from "helebba-sdk";
+import { Product, Result } from "helebba-sdk";
 import useGlobalStores from '../global-state/useGlobalStates';
 import { CartProductType } from '@/types';
 
 
 
 interface UseProductResult {
-  oneProduct: CartProductType | null;
+  productsList: Result<Product> | null;
   loading: boolean;
   error: string | null;
 }
 
-export const useGetProduct = (): UseProductResult => {
-  const [oneProduct, setOneProduct] = useState<CartProductType | null>(null);
+export const useGetProductsList = (): UseProductResult => {
+  const [productsList, setProductsList] = useState<Result<Product> | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const {setProductForShowDetails, productForShowDetails, slugForGetProduct} = useGlobalStores();
 
+ 
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -24,26 +24,24 @@ export const useGetProduct = (): UseProductResult => {
       setError(null);
 
       try {
-        const response = await fetch(`/api/getProduct?slug=${slugForGetProduct}`);
+        const response = await fetch(`/api/getProductsList`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const result: Product = await response.json();
+        const result: Result<Product> = await response.json();
 
-        const newResult: CartProductType = {...result, quantity : 1}
-        setOneProduct(newResult);
-        setProductForShowDetails(newResult)
+        if (result){
+          setProductsList(result);
+        }
       } catch (error) {
         setError((error as Error).message);
       } finally {
         setLoading(false);
       }
     };
-
-
       fetchProduct();
 
-  }, [ setProductForShowDetails, slugForGetProduct]);
+  }, []);
 
-  return { oneProduct, loading, error };
+  return { productsList, loading, error };
 };

@@ -11,6 +11,7 @@
   "dependencies": {
     "@eslint/config-array": "^0.17.0",
     "@eslint/object-schema": "^2.1.4",
+    "@tanstack/react-query": "^5.51.15",
     "@typescript-eslint/parser": "^7.16.1",
     "dotenv": "^16.4.5",
     "glob": "^11.0.0",

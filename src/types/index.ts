@@ -91,7 +91,9 @@ export interface GlobalStateType {
   isCartOpen: boolean;
   showProductDetails: boolean;
   productForShowDetails: CartProductType | null;
-  setProductForShowDetails: (product: CartProductType) => void;
+  slugForGetProduct: string;
+  setSlugForGetProduct: (slug: string)=> void;
+  setProductForShowDetails: (product: CartProductType |null ) => void;
   toggleMenu: () => void;
   toggleCart: () => void;
   toggleShowProductDetails: () => void;
