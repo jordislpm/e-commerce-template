@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import styles from "./page.module.css"
+import TanstackProvider from "@/components/providers/TanstackProvider";
+
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,11 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <TanstackProvider>
         <Header/>
         <div className={styles.content}>
         {children}
         </div>
         <Footer/>
+        </TanstackProvider>
       </body>
     </html>
   );

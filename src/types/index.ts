@@ -90,14 +90,13 @@ export interface GlobalStateType {
   isMenuOpen: boolean;
   isCartOpen: boolean;
   showProductDetails: boolean;
-  productForShowDetails: CartProductType | null;
   slugForGetProduct: string;
+  localAllProductsList: Product[] | null;
+  setLocalAllProductsList: (newProductList: Product[])=> void;
   setSlugForGetProduct: (slug: string)=> void;
-  setProductForShowDetails: (product: CartProductType |null ) => void;
   toggleMenu: () => void;
   toggleCart: () => void;
   toggleShowProductDetails: () => void;
-
 }
 
 

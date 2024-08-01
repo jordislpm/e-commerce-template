@@ -22,7 +22,8 @@ interface NavProps{
 
 function Nav() {
     const {categoriesList}=useGetCategoriesList()
-    const {productsList}=useGetProductsList()
+    const {localAllProductsList}=useGlobalStores();
+    
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [subMenu, setSubMenu] = useState<{ route: String, state: boolean, subRoute: SubRoutesProps[] | undefined }>(
@@ -33,22 +34,14 @@ function Nav() {
         }
     );
     const {setSlugForGetProduct} = useGlobalStores()
-    const [slug, setSlug]= useState<string>("");
     const [searchParams, setSearchParams] = useState<URLSearchParams | null>(null);
-    // const{oneProduct} = useGetProduct(slug);
-
-
-    // new productsList
-
-
-    // end new productsList
     const router = useRouter()
 
     const {routes, setRoutes}= useRoutesStore();
 
     useEffect(()=>{
 
-        if (categoriesList && productsList){
+        if (categoriesList && localAllProductsList){
 
         const categorieNames: string[] = categoriesList?.items.map((categorie)=>{
                     return categorie.name
@@ -61,9 +54,8 @@ function Nav() {
         })
 
    
-        productsList.items.forEach((product)=>{
-            product.categories.forEach((productCategorie)=>{
-            
+        localAllProductsList.forEach((product)=>{
+            product.categories.forEach((productCategorie)=>{ 
                     if(categorieNames.includes(productCategorie.name)){
                      const index=  newRoutes.findIndex(item => normalizeString(item?.name).includes(normalizeString(productCategorie.name)))
                      const subRouteExist = newRoutes[index]?.subRoutes?.some(item => item.name === product.name)
@@ -86,15 +78,13 @@ function Nav() {
                     }
             })
         })
-
-        console.log("newRoutes",newRoutes)
         setRoutes(newRoutes)
         if (typeof window !== 'undefined') {
             const params = new URLSearchParams(window.location.search);
             setSearchParams(params);
           }
         }
-    },[categoriesList, setRoutes, productsList])
+    },[categoriesList, setRoutes, localAllProductsList])
 
     const toggleSubMenuState = () => {
         setSubMenu(prevState => ({

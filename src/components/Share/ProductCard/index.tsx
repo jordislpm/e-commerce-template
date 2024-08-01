@@ -26,7 +26,7 @@ function ProductCard({ product }: ProductCardProps) {
 
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const { addProductToCart, cart } = useShoppingCart();
-  const { isCartOpen, toggleCart, setProductForShowDetails, setSlugForGetProduct } = useGlobalStores();
+  const { isCartOpen, toggleCart, setSlugForGetProduct } = useGlobalStores();
   const { isVariantAvailable, theVariantSelected } = useVariantsSelected();
   const [slug, setSlug] = useState<string>("");
   // const{oneProduct} = useGetProduct(slug);

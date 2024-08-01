@@ -1,17 +1,24 @@
 import { CartProductType, GlobalStateType } from "@/types";
+import { Product } from "helebba-sdk";
 import { create } from 'zustand'
+import { persist } from "zustand/middleware";
 
 export const GlobalStore = create<GlobalStateType>()(
-    (set) => ({
+   persist( (set) => ({
       isMenuOpen: false,
       isCartOpen: false,
       showProductDetails: false,
-      productForShowDetails: null,
       slugForGetProduct: "",
+      localAllProductsList: null,
+      setLocalAllProductsList : (newProductList: Product[]) => set({ localAllProductsList: newProductList}),
       setSlugForGetProduct: (slug: string) => set({ slugForGetProduct: slug }),
-      setProductForShowDetails: (product: CartProductType| null) => set({ productForShowDetails: product }),
       toggleMenu: () => set((state) => ({ isMenuOpen: !state.isMenuOpen })),
       toggleCart: () => set((state) => ({ isCartOpen: !state.isCartOpen })),
       toggleShowProductDetails: () => set((state) => ({ showProductDetails: !state.showProductDetails })),
-    })
+    }),
+    {
+      name: 'algodina-store', 
+      getStorage: () => localStorage, 
+    }
+  )
 );

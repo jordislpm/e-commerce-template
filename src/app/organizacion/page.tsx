@@ -4,7 +4,7 @@ import React from 'react'
 function Organizacion() {
   return (
     <> 
-    <ProductsSection title="organizacion" filter='organizacion'/>
+    <ProductsSection title="ORGANIZACIÓN" filter='organizacion'/>
     </>
   )
 }

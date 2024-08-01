@@ -2,13 +2,13 @@
 import React, { useEffect, useState } from 'react'
 import { MdOutlineCloud } from 'react-icons/md'
 import styles from "./ProductsSection.module.css"
-import { helebba } from '@/apiContast';
 import { filterItemsByCategory } from '@/services/filters';
 import Catalog from '../Catalog';
 import ProductCard from '../ProductCard';
 import ButtonPrimary from '../ButtonPrimary';
 import { useGetProductsList } from '@/hooks/getData/useGetProductsList';
-import { Product, ProductVariant } from "helebba-sdk";
+import { Product} from "helebba-sdk";
+import useGlobalStores from '@/hooks/global-state/useGlobalStates';
 
 
 interface ProductsSectionProps {
@@ -20,22 +20,15 @@ interface ProductsSectionProps {
 
 
 function ProductsSection({title, filter = "all", cloud = false}:ProductsSectionProps) {
-
-    const {productsList, loading, error}= useGetProductsList()
-    //const productFilter = productsList ? filterItemsByCategory(productsList?.items, filter) : [];
-   
     const [productFilter, setProductFilter]= useState<Product[] | null>()
+    const {localAllProductsList}=useGlobalStores();
 
     useEffect(()=>{
-
-
-      if (productsList){
-        console.log("productsList", productsList)
-        const filtered = filterItemsByCategory(productsList?.items, filter)
+      if (localAllProductsList){
+        const filtered = filterItemsByCategory(localAllProductsList, filter)
         setProductFilter(filtered)
-        console.log("filtered", filtered)
       }
-    },[filter, productsList])
+    },[filter, localAllProductsList])
 
     
   return (
