@@ -18,7 +18,6 @@ interface ProductsSectionProps {
     
 }
 
-
 function ProductsSection({title, filter = "all", cloud = false}:ProductsSectionProps) {
     const [productFilter, setProductFilter]= useState<Product[] | null>()
     const {localAllProductsList}=useGlobalStores();

@@ -1,0 +1,38 @@
+.body{
+    display: flex;
+    width: 100%;
+    height: auto;
+    border: solid 1px red;
+    gap: 1.5rem;
+}
+
+.image_container {
+    width: 5rem;
+    height:5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+  }
+
+  .details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+  }
+
+  .details p{
+    font-size:1rem;
+  }
+
+  .details span{
+    font-size:0.9rem;
+  }

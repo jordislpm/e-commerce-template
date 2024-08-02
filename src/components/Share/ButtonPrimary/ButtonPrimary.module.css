@@ -13,3 +13,9 @@
     background: var(--color-main);
     color: var(--white-principal);
 }
+
+.secondary{
+    background: var(--color-mainVariant);
+    color: var(--white-principal);
+}
+

@@ -18,7 +18,7 @@ import { useGetProductsListQuery } from '@/hooks/getDataQuery/useGetProductsList
 
 
 function HomeCatalog() {
-  const{productsListQuery, loading}=useGetProductsListQuery()
+  const{loading}=useGetProductsListQuery()
   const {localAllProductsList}=useGlobalStores();
   const [productsInStorage, setProductsInStorage]= useState<boolean>(false);
 

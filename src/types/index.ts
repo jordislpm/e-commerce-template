@@ -87,6 +87,7 @@ export interface CartStateType {
 }
 
 export interface GlobalStateType {
+  isSearchOpen: boolean;
   isMenuOpen: boolean;
   isCartOpen: boolean;
   showProductDetails: boolean;
@@ -96,7 +97,15 @@ export interface GlobalStateType {
   setSlugForGetProduct: (slug: string)=> void;
   toggleMenu: () => void;
   toggleCart: () => void;
+  toggleSearch: ()=> void;
   toggleShowProductDetails: () => void;
+}
+
+export interface SearchStoreType{
+  productsListSearch: Product[] | null;
+  productSearchedTitle: string;
+  setProductSearchedTitle: (text: string)=> void;
+  filterProductsListSearch: (word: string, list: Product[]) => void;
 }
 
 
