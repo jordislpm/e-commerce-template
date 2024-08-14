@@ -1,0 +1,26 @@
+.main {
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  border-top: 0.1px solid var(--gray-principal);
+  border-bottom: 0.1px solid var(--gray-principal);
+}
+
+.divider {
+  width: 0.1px;
+  background-color: var(--gray-principal);
+  align-self: stretch;
+}
+
+.filter {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  color: var(--gray-principal);
+  font-size: 0.8rem;
+  font-weight:400;
+}

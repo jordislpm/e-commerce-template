@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { formatPrice } from '@/services/format';
 import useGlobalStores from '@/hooks/global-state/useGlobalStates';
 import { useRouter } from 'next/navigation';
+import useSearchStore from '@/hooks/global-state/useSearchGlobal';
 
 interface SearchCardProps {
     product: Product;
@@ -24,6 +25,13 @@ function SearchCard({ product }: SearchCardProps) {
         setSlugForGetProduct}
         = useGlobalStores();
 
+        const {
+            filterProductsListSearch,
+            productsListSearch,
+            setProductSearchedTitle,
+            productSearchedTitle
+          } = useSearchStore()
+
     const { name, images, price } = product;
 
 
@@ -33,6 +41,7 @@ function SearchCard({ product }: SearchCardProps) {
             setSlugForGetProduct(product.slug)
             router.push(`/product?${searchParams}`);
             toggleSearch();
+            setProductSearchedTitle("")
     }
     
     return (

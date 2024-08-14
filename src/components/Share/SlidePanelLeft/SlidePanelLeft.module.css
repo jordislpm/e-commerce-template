@@ -1,0 +1,32 @@
+.cart {
+    display: flex;
+    flex-direction: column;
+    background: var(--white-principal);
+    width: 90%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: -100vw;
+    z-index: 150;
+    transition: right 0.5s ease;
+  }
+  
+  .cartActive {
+    right: 0;
+    animation: slideUp 0.1s ease-out forwards;
+  }
+  
+  .cartDesactive {
+    right: -100vw;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(5%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }

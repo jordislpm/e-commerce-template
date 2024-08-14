@@ -13,6 +13,7 @@ import useGlobalStores from '@/hooks/global-state/useGlobalStates';
 import { normalizeString } from '@/services/format';
 import { useGetCategoriesList } from '@/hooks/getData/useGetCategories';
 import { useGetProductsList } from '@/hooks/getData/useGetProductsList';
+import OverlayComponent from '@/components/Share/OverlayComponent';
 
 
 interface NavProps{
@@ -133,11 +134,7 @@ function Nav() {
     return (
         <nav className={styles.nav}>
             <IoMenuSharp onClick={toggleModal} size={25} />
-            <div
-                className={`${styles.overlay} ${isOpen ? styles.overlayActive : ''}`}
-                onClick={toggleModal}>
-
-            </div>
+            <OverlayComponent isOpen={isOpen} onClickOverlay={toggleModal}/>
             <div
                 className={`${styles.menu} ${isOpen ? styles.menuActive : styles.menuDesactive}`}
             >

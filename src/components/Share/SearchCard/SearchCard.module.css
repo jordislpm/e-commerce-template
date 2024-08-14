@@ -2,13 +2,12 @@
     display: flex;
     width: 100%;
     height: auto;
-    border: solid 1px red;
     gap: 1.5rem;
 }
 
 .image_container {
-    width: 5rem;
-    height:5rem;
+    min-width: 5rem;
+    min-height:5rem;
     position: relative;
     overflow: hidden;
   }

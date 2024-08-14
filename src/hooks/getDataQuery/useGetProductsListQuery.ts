@@ -1,9 +1,11 @@
-
+"use client"
 import { useEffect } from 'react';
 import { Product, Result } from "helebba-sdk";
 import { CartProductType } from '@/types';
 import useGlobalStores from '../global-state/useGlobalStates';
 import { useQuery } from '@tanstack/react-query';
+import _ from 'lodash';
+
 
 
 
@@ -13,13 +15,14 @@ interface UseProductResult {
   error: string | null;
 }
 
+
+
 const fetchProduct = async (): Promise<Result<Product>> => {
   const response = await fetch(`/api/getProductsList`);
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
   const result: Result<Product> = await response.json();
-  console.log("is fetching")
   return result;
 };
 
@@ -43,7 +46,8 @@ export const useGetProductsListQuery = (): UseProductResult => {
   const productsListQuery = data ?? null;
   useEffect(()=>{
     if (isSuccess && data){
-      setLocalAllProductsList(data.items)
+
+      setLocalAllProductsList(data.items);
     }
   },[isSuccess, data, setLocalAllProductsList])
   return {

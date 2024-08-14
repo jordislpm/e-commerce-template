@@ -1,3 +1,4 @@
+"use client"
 import { categories } from './../../contast';
 import { useEffect, useState } from 'react';
 import { Result, Category } from "helebba-sdk";

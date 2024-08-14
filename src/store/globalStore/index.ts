@@ -1,4 +1,4 @@
-import { CartProductType, GlobalStateType } from "@/types";
+import { GlobalStateType } from "@/types";
 import { Product } from "helebba-sdk";
 import { create } from 'zustand'
 import { persist } from "zustand/middleware";

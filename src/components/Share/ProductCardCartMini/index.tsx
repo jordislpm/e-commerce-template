@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./ProductCardCart.module.css"
+import styles from "./ProductCardCartMini.module.css"
 import { CartProductType } from '@/types'
 import Image from 'next/image'
 import useShoppingCart from '@/hooks/global-state/useShoppingCart'
@@ -12,7 +12,7 @@ interface ProductCardCartType {
 }
 
 
-function ProductCardCart({product}:ProductCardCartType) {
+function ProductCardCartMini({product}:ProductCardCartType) {
     const {images, name, price, quantity, id, kind, variantSelected}= product;
 
     if (variantSelected && variantSelected){
@@ -63,4 +63,4 @@ function ProductCardCart({product}:ProductCardCartType) {
   )
 }
 
-export default ProductCardCart
+export default ProductCardCartMini

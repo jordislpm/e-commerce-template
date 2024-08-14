@@ -25,13 +25,21 @@ export const cartStore = create<CartStateType>()(
             return item.variantSelected.variantId === product.variantSelected.variantId
           }
         });
+
+
         if (!productInCart && !product.variantSelected) {
           set({ cart: [product, ...cart] });
           return;
         } else if (productInCart && !product.variantSelected) {
           const updatedCartProducts = cart.map((item) => {
             if (item.id === product.id) {
-              return { ...item, quantity: item.quantity + product.quantity };
+
+              if (item.quantity < item.stock) {
+                // a la espera de otro producto sin variante para probar
+                return { ...item, quantity: item.quantity + product.quantity };
+              } else {
+                alert("Haz alcanzado el limite de unidades disponibles en nuestro stock.")
+              }
             }
             return item;
           });
@@ -52,7 +60,11 @@ export const cartStore = create<CartStateType>()(
           } else if (productVariantInCart) {
             const updatedCartProducts = cart.map((item) => {
               if (item.variantSelected?.variantId === product.variantSelected?.variantId) {
-                return { ...item, quantity: item.quantity + product.quantity };
+                if (item.variantSelected && item.quantity < item.variantSelected.stock){
+                  return { ...item, quantity: item.quantity + product.quantity };
+                } else{
+                  alert("Haz alcanzado el limite de unidades disponibles en nuestro stock.")
+                }
               }
               return item;
             });

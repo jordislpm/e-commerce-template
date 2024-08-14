@@ -23,9 +23,9 @@ function ButtonPrimary({
     if (type === 'link' && href) {
         return (
             <Link href={href} passHref>
-                <a className={classNameAll} onClick={onClick}>
+                <div className={classNameAll} onClick={onClick}>
                     {title?.toLocaleUpperCase()}
-                </a>
+                </div>
             </Link>
         );
     }

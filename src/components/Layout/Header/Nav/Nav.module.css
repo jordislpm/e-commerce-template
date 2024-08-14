@@ -74,6 +74,7 @@
     z-index: 200;
     position: absolute;
     background: var(--color-main);
+    overflow-y: auto;
   }
 
   .sub_list__active {

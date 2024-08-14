@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useState } from 'react';
 import { Product, Result } from "helebba-sdk";
 import useGlobalStores from '../global-state/useGlobalStates';

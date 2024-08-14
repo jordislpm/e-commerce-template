@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useState } from 'react';
 import { Product } from "helebba-sdk";
 import useGlobalStores from '../global-state/useGlobalStates';
@@ -15,7 +16,7 @@ export const useGetProduct = (): UseProductResult => {
   const [oneProduct, setOneProduct] = useState<CartProductType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const {setProductForShowDetails, productForShowDetails, slugForGetProduct} = useGlobalStores();
+  const { slugForGetProduct} = useGlobalStores();
 
 
   useEffect(() => {
@@ -32,7 +33,6 @@ export const useGetProduct = (): UseProductResult => {
 
         const newResult: CartProductType = {...result, quantity : 1}
         setOneProduct(newResult);
-        setProductForShowDetails(newResult)
       } catch (error) {
         setError((error as Error).message);
       } finally {
@@ -43,7 +43,7 @@ export const useGetProduct = (): UseProductResult => {
 
       fetchProduct();
 
-  }, [ setProductForShowDetails, slugForGetProduct]);
+  }, [ slugForGetProduct]);
 
   return { oneProduct, loading, error };
 };

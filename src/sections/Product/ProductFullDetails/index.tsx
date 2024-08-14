@@ -13,7 +13,7 @@ import QuantityOptions from '@/components/Share/QuantityOptions';
 import ButtonPrimary from '@/components/Share/ButtonPrimary';
 import Loading from '@/components/Share/Loading';
 import { useGetProduct } from '@/hooks/getData/useGetProduct';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 
 function ProductFullDetails() {
   const { toggleCart, setSlugForGetProduct } = useGlobalStores();
@@ -23,10 +23,17 @@ function ProductFullDetails() {
   const [newProduct, setNewProduct] = useState<CartProductType | null>();
   const searchParams = useSearchParams();
 
-
+const router = useRouter()
   useEffect(()=>{
     setNewProduct(oneProduct)
+    console.log(oneProduct)
+    const searchParams = new URLSearchParams(global.location.search);
+    return () => {
+      searchParams.delete('product');
+    };
   },[oneProduct])
+
+
 
   useEffect(() => {
     let pickedVariant: ProductVariant | undefined = undefined;

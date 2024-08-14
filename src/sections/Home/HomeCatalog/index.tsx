@@ -22,12 +22,6 @@ function HomeCatalog() {
   const {localAllProductsList}=useGlobalStores();
   const [productsInStorage, setProductsInStorage]= useState<boolean>(false);
 
-//   useEffect(() => {
-//     const savedData = localStorage.getItem('algodina-store');
-//     if (savedData) {
-//  setProductsInStorage(true);
-//     }
-//   }, []);
 
   return (
     <section className={styles.section}>

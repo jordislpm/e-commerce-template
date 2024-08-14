@@ -13,7 +13,7 @@ import ProductVariants from '../ProductVariants';
 import ButtonPrimary from '../ButtonPrimary';
 import useVariantsSelected from '@/hooks/global-state/useVariantsSelected';
 import { CartProductType } from '@/types';
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter} from 'next/navigation'
 import { useGetProduct } from '@/hooks/getData/useGetProduct';
 
 interface ProductCardProps {

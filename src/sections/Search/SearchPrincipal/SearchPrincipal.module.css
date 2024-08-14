@@ -1,0 +1,39 @@
+.section{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:2rem;
+}
+
+.h2{
+    padding:3rem 3rem 1rem 3rem;
+}
+
+.empty{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 0rem 0rem 0rem;
+    gap: 2rem;
+    width:100%;
+}
+
+.h3{
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 400;
+    padding: 1rem 0rem;
+    width: 100%;
+}
+
+.subTitle_results{
+    width:max-content;
+    font-size:0.9rem;
+    margin-bottom:2rem;
+}
+
+.section{
+    border-bottom: 1px solid #ccc;
+  }
