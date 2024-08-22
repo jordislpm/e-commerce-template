@@ -58,7 +58,7 @@ function CatalogWithFilter({ productList }: CatalogWithFilterProps) {
 
     return (
         <div>
-            {productList &&
+            {productList.length > 0 &&
                 <div className={styles.main}>
                     <div className={styles.filters}>
                         <div 

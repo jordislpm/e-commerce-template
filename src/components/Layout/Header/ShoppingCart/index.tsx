@@ -10,6 +10,7 @@ import useGlobalStores from '@/hooks/global-state/useGlobalStates';
 import SlidePanelLeft from '@/components/Share/SlidePanelLeft';
 import OverlayComponent from '@/components/Share/OverlayComponent';
 import ProductCardCartMini from '@/components/Share/ProductCardCartMini';
+import { usePathname } from 'next/navigation';
 
 
 
@@ -19,6 +20,7 @@ function ShoppingCart() {
 
   const { isCartOpen, toggleCart } = useGlobalStores()
   const { cart } = useShoppingCart();
+  const pathname = usePathname();
 
 
   useEffect(() => {
@@ -47,6 +49,14 @@ function ShoppingCart() {
       document.body.style.overflow = '';
     };
   }, [isCartOpen]);
+
+  const clickInShoppingCart = ()=>{
+    if (pathname === "/cart"){
+      return
+    }
+    toggleCart()
+  }
+  
   return (
     <div className={styles.body_cart}>
       {cart.length > 0 && <div className={styles.ball} />}
@@ -88,7 +98,7 @@ function ShoppingCart() {
         }
       </div>
       </SlidePanelLeft>
-      <RiShoppingCartLine size={25} onClick={toggleCart} />
+      <RiShoppingCartLine size={25} onClick={clickInShoppingCart} />
     </div>
   )
 }

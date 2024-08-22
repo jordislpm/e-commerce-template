@@ -8,7 +8,7 @@
     top: 0;
     right: -100vw;
     z-index: 150;
-    transition: right 0.5s ease;
+    transition: right 0.3s ease;
   }
   
   .cartActive {

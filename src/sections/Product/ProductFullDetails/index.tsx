@@ -26,7 +26,6 @@ function ProductFullDetails() {
 const router = useRouter()
   useEffect(()=>{
     setNewProduct(oneProduct)
-    console.log(oneProduct)
     const searchParams = new URLSearchParams(global.location.search);
     return () => {
       searchParams.delete('product');

@@ -60,9 +60,13 @@ width:100%;
 
   .shipping_text{
 color:var(--gray-principal);
+font-size: 0.8rem;
   }
 
   
   .shipping_text a {
-    text-decoration: none !important;
+    text-decoration: none ;
+    color: var(--black-color);
+    text-decoration: underline;
+
   }

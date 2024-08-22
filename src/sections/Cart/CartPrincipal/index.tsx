@@ -47,7 +47,7 @@ function CartPrincipal() {
              placeholder='¿Como podemos ayudarte?'/>
             <h3 className={styles.total_price}>Total: S/ {formatPrice(getTotalValueItems())}</h3>
             <p className={styles.shipping_text}
-            >Impuestos incluidos. Los <Link href="">gastos de envio</Link> se calculan en la pantalla de pago</p>
+            >Impuestos incluidos. Los <Link href="/shipping-policy">gastos de envio</Link> se calculan en la pantalla de pago</p>
         </div>
     )
 }

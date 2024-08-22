@@ -38,7 +38,7 @@ function HomeCatalog() {
           </Catalog>
       }
       {
-        loading
+        loading && localAllProductsList ===  null
         ? 
         <Loading message='Cargando productos'/>
         :
