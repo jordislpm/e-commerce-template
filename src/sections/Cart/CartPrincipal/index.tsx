@@ -49,6 +49,7 @@ function CartPrincipal() {
             <p className={styles.shipping_text}
             >Impuestos incluidos. Los <Link href="/shipping-policy">gastos de envio</Link> se calculan en la pantalla de pago</p>
         </div>
+        //commit for new repository
     )
 }
 
