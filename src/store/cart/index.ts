@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 import { CartProductType, CartStateType } from "@/types";
 
 export const cartStore = create<CartStateType>()(
-  persist(
+
     (set, get) => ({
       cart: [],
       getTotalItems: () => {
@@ -154,7 +154,8 @@ export const cartStore = create<CartStateType>()(
         });
         set({ cart: updatedCartProducts });
       },
-    }),
-    { name: 'algodonia-shopping-cart' },
-  ),
+    })
+  //   ,
+  //   { name: 'algodonia-shopping-cart' },
+  // ),
 );

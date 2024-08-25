@@ -4,7 +4,7 @@ import { create } from 'zustand'
 import { persist } from "zustand/middleware";
 
 export const GlobalStore = create<GlobalStateType>()(
-   persist( (set) => ({
+ (set) => ({
       isSearchOpen: false,
       isMenuOpen: false,
       isCartOpen: false,
@@ -17,10 +17,11 @@ export const GlobalStore = create<GlobalStateType>()(
       toggleCart: () => set((state) => ({ isCartOpen: !state.isCartOpen })),
       toggleSearch: () => set((state) => ({ isSearchOpen: !state.isSearchOpen})),
       toggleShowProductDetails: () => set((state) => ({ showProductDetails: !state.showProductDetails })),
-    }),
-    {
-      name: 'algodina-store', 
-      getStorage: () => localStorage, 
-    }
-  )
+    })
+  //   ,
+  //   {
+  //     name: 'algodina-store', 
+  //     getStorage: () => localStorage, 
+  //   }
+  // )
 );

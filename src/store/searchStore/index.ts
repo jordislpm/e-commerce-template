@@ -5,7 +5,7 @@ import { normalizeString } from '@/services/format';
 import { Product } from 'helebba-sdk';
 
 export const SearchStore = create<SearchStoreType>()(
-  persist(
+
     (set) => ({
       productsListSearch: null,
       productSearchedTitle: "",
@@ -31,10 +31,11 @@ export const SearchStore = create<SearchStoreType>()(
           productSearchedTitle: word
         });
       },
-    }),
-    {
-      name: 'search-store-algodonia', 
-      getStorage: () => localStorage,
-    }
-  )
+    })
+  //   ,
+  //   {
+  //     name: 'search-store-algodonia', 
+  //     getStorage: () => localStorage,
+  //   }
+  // )
 );
