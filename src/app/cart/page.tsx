@@ -1,4 +1,4 @@
-import CartFormShipping from '@/sections/Cart/CartFormShipping'
+import CartFormShipping from '@/sections/Cart/CartPrincipal/CartFormShipping'
 import CartPrincipal from '@/sections/Cart/CartPrincipal'
 import React from 'react'
 
