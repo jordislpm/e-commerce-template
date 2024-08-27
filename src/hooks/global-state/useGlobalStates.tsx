@@ -1,4 +1,4 @@
-import { GlobalStore } from "@/store/globalStore";
+import { GlobalStore } from "../../store/globalStore"
 
 const useGlobalStores = () => {
   const isMenuOpen = GlobalStore((state) => state.isMenuOpen);
