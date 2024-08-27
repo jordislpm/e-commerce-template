@@ -1,9 +1,9 @@
-import { SearchStore } from "../../store/SearchStore"
+import { globalSearchStore} from "../../store/SearchStore"
 const useSearchStore  = () => {
-    const productsListSearch = SearchStore((state) => state.productsListSearch);
-    const productSearchedTitle = SearchStore((state) => state.productSearchedTitle);
-    const setProductSearchedTitle = SearchStore((state) => state.setProductSearchedTitle);
-    const filterProductsListSearch = SearchStore((state) => state.filterProductsListSearch);
+    const productsListSearch = globalSearchStore((state) => state.productsListSearch);
+    const productSearchedTitle = globalSearchStore((state) => state.productSearchedTitle);
+    const setProductSearchedTitle = globalSearchStore((state) => state.setProductSearchedTitle);
+    const filterProductsListSearch = globalSearchStore((state) => state.filterProductsListSearch);
   
     return {
       productsListSearch,

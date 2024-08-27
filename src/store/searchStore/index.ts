@@ -4,7 +4,7 @@ import { SearchStoreType } from '@/types';
 import { normalizeString } from '@/services/format';
 import { Product } from 'helebba-sdk';
 
-export const SearchStore = create<SearchStoreType>()(
+export const globalSearchStore = create<SearchStoreType>()(
   persist(
     (set) => ({
       productsListSearch: null,
